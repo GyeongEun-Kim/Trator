@@ -1,0 +1,22 @@
+.nav_align {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav_menu {
+  display: flex;
+}
+
+.nav_menu_align {
+  display: flex;
+}
+
+.nav_menu_align_left {
+  display: flex;
+  margin-right: 15px;
+}
+
+.nav_menu_align_right {
+  margin-left: 15px;
+  display: flex;
+}
