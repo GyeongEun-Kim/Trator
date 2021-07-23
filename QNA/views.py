@@ -1,7 +1,7 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
 
 def list(request):
-    render(request, 'qna_list.html')
-
+    return render(request, 'question.html')
