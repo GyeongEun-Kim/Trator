@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{%url 'q_update'%}" method="POST">
+        {%csrf_token%}
+        <p>제목: <input type="text" name="title" value="{{question.title}}"></p>
+        <p>작성자: <input type="text" name="writer" value="{{question.writer}}"></p>
+        <p>내용: <textarea name="content" id="" cols="30" rows="10">{{question.content}}</textarea></p>
+        <input type="submit" value="질문하기">
+    </form>
+</body>
+</html>

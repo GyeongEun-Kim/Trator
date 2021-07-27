@@ -7,6 +7,19 @@
     <title>Trator-Q&A</title>
 </head>
 <body>
-    <h1>QnA 리스트 입니다.</h1>
-</body>
+    <div>
+        <a href="{% url 'q_new' %}">질문하기</a>
+    </div>
+    {% if question_list %}
+        {% for question in question_list %}
+            <h2>{{question.title}}</h2>
+            <span>{{question.writer}}</span>
+            <span>{{question.date}}</span>
+            <a href="{% url 'q_detail' question.id %}">더보기..</a>
+            <br>
+        {% endfor %}
+    {% else %}
+        <h1>질문이 없습니다.</h1>
+    {% endif %}
+    </body>
 </html>

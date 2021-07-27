@@ -1,7 +1,48 @@
-from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.http import request
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Question, Answer
+from django.utils import timezone
 
 # Create your views here.
 
-def list(request):
-    return render(request, 'question.html')
+def question_list(request):
+    question_list = Question.objects.all()
+    context = {'question_list': question_list}
+    return render(request, 'qna_list.html', context)
+
+def question_detail(request, id):
+    question = get_object_or_404(Question, pk = id)
+    return render(request, 'qna_detail.html', {'question': question})
+
+def question_new(request):
+    return render(request, 'new_question.html')
+
+def question_create(request):
+    new_question = Question()
+    new_question.title = request.POST['title']
+    new_question.writer = request.POST['writer']
+    new_question.location = request.POST['location']
+    new_question.content = request.POST['content']
+    new_question.date = timezone.now()
+    new_question.save()
+
+    return redirect('q_detail', new_question.id)
+
+def question_edit(request, id):
+    edit_question = Question.objects.get(id = id)
+    return render(request, 'question_edit.html', {'question':edit_question})
+
+def question_update(request, id):
+    update_question = Question.objects.get(id = id)
+    update_question.title = request.POST['title']
+    update_question.writer = request.POST['writer']
+    update_question.content = request.POST['content']
+    update_question.date = timezone.now()
+    update_question.save()
+
+    return redirect('q_detail', update_question.id)
+
+def question_delete(request, id):
+    delete_question = Question.objects.get(id = id)
+    delete_question.delete()
+    return redirect('qna_list')
