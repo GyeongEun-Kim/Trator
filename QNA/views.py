@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Question, Answer
 from django.utils import timezone
@@ -11,8 +12,7 @@ def question_list(request):
 
 def question_detail(request, id):
     question = get_object_or_404(Question, pk = id)
-    context = {'question': question}
-    return render(request, 'qna_detail.html', context)
+    return render(request, 'qna_detail.html', {'question': question})
 
 def question_new(request):
     return render(request, 'new_question.html')
@@ -26,4 +26,23 @@ def question_create(request):
     new_question.date = timezone.now()
     new_question.save()
 
-    return redirect('detail', new_question.id)
+    return redirect('q_detail', new_question.id)
+
+def question_edit(request, id):
+    edit_question = Question.objects.get(id = id)
+    return render(request, 'question_edit.html', {'question':edit_question})
+
+def question_update(request, id):
+    update_question = Question.objects.get(id = id)
+    update_question.title = request.POST['title']
+    update_question.writer = request.POST['writer']
+    update_question.content = request.POST['content']
+    update_question.date = timezone.now()
+    update_question.save()
+
+    return redirect('q_detail', update_question.id)
+
+def question_delete(request, id):
+    delete_question = Question.objects.get(id = id)
+    delete_question.delete()
+    return redirect('qna_list')

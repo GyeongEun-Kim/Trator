@@ -8,14 +8,14 @@
 </head>
 <body>
     <div>
-        <a href="{% url 'qna_new' %}">질문하기</a>
+        <a href="{% url 'q_new' %}">질문하기</a>
     </div>
     {% if question_list %}
         {% for question in question_list %}
             <h2>{{question.title}}</h2>
             <span>{{question.writer}}</span>
             <span>{{question.date}}</span>
-            <a href="{% url 'qna_detail' question.id %}">더보기..</a>
+            <a href="{% url 'q_detail' question.id %}">더보기..</a>
             <br>
         {% endfor %}
     {% else %}

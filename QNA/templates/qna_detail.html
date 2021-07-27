@@ -22,7 +22,8 @@
             <img src="{{question.image}}">
         </div>     
     </div>
-    <a href="{% url 'edit' question.id %}">수정하기</a>
-    <a href="{% url 'delete'%}">질문 삭제</a>
+    <a href="{% url 'q_edit' question.id %}">수정하기</a>
+    <a href="{% url 'q_delete' question.id %}">질문 삭제</a>
+    <a href="{% url 'qna_list' %}">첫 페이지</a>
 </body>
 </html>

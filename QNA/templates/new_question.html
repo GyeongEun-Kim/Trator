@@ -7,21 +7,21 @@
     <title>질문하기</title>
 </head>
 <body>
-    <form action="{%url 'qna_create'%}" method="POST">
+    <form action="{%url 'q_create'%}" method="POST">
         {%csrf_token%}
         <p>제목: <input type="text" name="title" placeholder="제목을 입력하세요."></p>
         <p>작성자: <input type="text" name="writer" placeholder="작성자"></p>
         <p>지역: <select name="location" id="">
-            <option value="1">국내</option>
-            <option value="2">아시아</option>
-            <option value="3">유럽</option>
-            <option value="4">아프리카</option>
-            <option value="5">오세아니아</option>
-            <option value="6">남아메리카</option>
-            <option value="7">북아메리카</option>
+            <option value="국내">국내</option>
+            <option value="아시아">아시아</option>
+            <option value="유럽">유럽</option>
+            <option value="아프리카">아프리카</option>
+            <option value="오세아니아">오세아니아</option>
+            <option value="남아메리카">남아메리카</option>
+            <option value="북아메리카">북아메리카</option>
         </select></p>
         <p>내용: <textarea name="content" id="" cols="30" rows="10" placeholder="내용을 입력하세요."></textarea></p>
-        <input type="submit" value="제출하기">
+        <input type="submit" value="질문하기">
     </form>
 </body>
 </html>
