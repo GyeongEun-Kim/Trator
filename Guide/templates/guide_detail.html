@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if guide_detail %}
+    <h1>제목 : {{guide_detail.title}}</h1>
+    <br>
+    <h2>작성자 : {{guide_detail.writer}}</h2>
+    <br>
+    <h2>작성 시간 : {{guide_detail.date}}</h2>
+    <br>
+    <h2>가격 : {{guide_detail.price}}</h2>
+    내용 : {{guide_detail.content}}
+    <br>
+    <a href="{% url guide_delete guide_detail.id %}">글 삭제하기</a>
+    
+
+    
+</body>
+</html>

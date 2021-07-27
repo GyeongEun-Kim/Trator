@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{% url 'new' %}" method='POST'>
+    <form action="{% url 'guide_new' %}" method='POST'>
         {% csrf_token %}
         <label for="title">제목: </label>
         <input type="text" id="title" name="title">

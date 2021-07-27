@@ -17,8 +17,10 @@ Including another URLconf
 from django.urls import path
 from .views import *
 
+
+
 urlpatterns = [
-    path('',show_all_list, name='list'),
-    path('detail/', show_detail, name='detail'),
-    path('new/',new,name='new'),
+    path('',guide_list, name='guide_list'),
+    path('detail/<int:pk>', guide_detail, name='guide_detail'),
+    path('new/',guide_new,name='guide_new'),
 ]
