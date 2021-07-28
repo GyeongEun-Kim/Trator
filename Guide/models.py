@@ -6,7 +6,7 @@ class Guide (models.Model) :
     writer = models.CharField(max_length=10)
     date = models.DateField()
     location = models.CharField(max_length=10)
-    image = models.ImageField(upload_to='', blank=True, null=True)
+    image = models.ImageField( blank=True, null=True, upload_to="guide/")
     price =models.IntegerField()
 
 class Meta :
