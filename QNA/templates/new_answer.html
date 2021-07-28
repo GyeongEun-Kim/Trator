@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<div>
+    <div>
+        <h1>{{question.title}}</h1> 
+        <span>{{question.location}}</span>
+        <span>No.{{question.id}}</span>            
+    </div>
+    <div>
+        <span>{{question.writer}}</span>
+        <span>{{question.date}}</span>
+    </div>
+    <div>
+        <span>{{question.content}}</span>
+        <img src="{{question.image}}">
+    </div>     
+</div>
+<br><br><br><br>
+<p>답변하기</p>
+<form action="{%url 'a_create' question.id%}" method="POST">
+    {%csrf_token%}
+    <p>작성자: <input type="text" name="writer" placeholder="작성자"></p>
+    <p>내용: <textarea name="content" id="" cols="30" rows="10" placeholder="내용을 입력하세요."></textarea></p>
+    <input type="submit" value="답변하기">
+</form>
+{% endblock%}

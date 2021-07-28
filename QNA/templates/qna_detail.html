@@ -1,29 +1,36 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>질문 상세 보기</title>
-</head>
-<body>
+{% extends 'base.html' %} {% block content %}
+
+<!-- 메인 SECTION -->
+<div>
     <div>
-        <div>
-            <h1>{{question.title}}</h1>
-            <span>{{question.location}}</span>
-            <span>No.{{question.id}}</span>            
-        </div>
-        <div>
-            <span>{{question.writer}}</span>
-            <span>{{question.date}}</span>
-        </div>
-        <div>
-            <span>{{question.content}}</span>
-            <img src="{{question.image}}">
-        </div>     
+        <h1>{{question.title}}</h1>
+        <span>{{question.location}}</span>
+        <span>No.{{question.id}}</span>            
     </div>
-    <a href="{% url 'q_edit' question.id %}">수정하기</a>
-    <a href="{% url 'q_delete' question.id %}">질문 삭제</a>
-    <a href="{% url 'qna_list' %}">첫 페이지</a>
-</body>
-</html>
+    <div>
+        <span>{{question.writer}}</span>
+        <span>{{question.date}}</span>
+    </div>
+    <div>
+        <span>{{question.content}}</span>
+        <img src="{{question.image}}">
+    </div>     
+</div>
+<a href="{% url 'q_edit' question.id %}">수정하기</a>
+<a href="{% url 'q_delete' question.id %}">질문 삭제</a>
+<a href="{% url 'qna_list' %}">첫 페이지</a>
+<br>
+<br>
+<br>
+<p>{{question.answer_set.count}}개의 답변</p>
+<div>
+    <ul>
+    {% for answer in question.answer_set.all %}
+        <a href="{% url 'a_detail' answer.id %}">{{answer.writer}}님의 답변입니다.</a>
+    {%endfor%}
+    </ul>
+</div>
+
+<a href="{%url 'a_new' question.id %}">답변하기</a>
+
+{% endblock%}
