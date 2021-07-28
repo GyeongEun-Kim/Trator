@@ -8,16 +8,25 @@
 </head>
 <body>
     {% if guide_detail %}
-    <h1>제목 : {{guide_detail.title}}</h1>
-    <br>
-    <h2>작성자 : {{guide_detail.writer}}</h2>
-    <br>
-    <h2>작성 시간 : {{guide_detail.date}}</h2>
-    <br>
-    <h2>가격 : {{guide_detail.price}}</h2>
-    내용 : {{guide_detail.content}}
-    <br>
-    <a href="{% url guide_delete guide_detail.id %}">글 삭제하기</a>
+        <h1>제목 : {{guide_detail.title}}</h1>
+        <br>
+        <h2>작성자 : {{guide_detail.writer}}</h2>
+        <br>
+        <h2>작성 시간 : {{guide_detail.date}}</h2>
+        <br>
+        <h2>가격 : {{guide_detail.price}}</h2>
+        <h2>내용 : {{guide_detail.content}} </h2>
+        {% if guide_detail.image %}
+        <image src ="{{guide_detail.image.url}}" height="600"></image>
+        {% endif %}
+        <br>
+
+        {% if guide_detail.writer == request.user.username %}
+        <a href="{% url 'guide_delete' guide_detail.id %}">글 삭제하기</a>
+
+        <a href ="{% url 'guide_update' guide_detail.id %}">글 수정하기</a>
+        {% endif %}
+    {% endif %}
     
 
     

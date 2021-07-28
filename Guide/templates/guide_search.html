@@ -16,9 +16,10 @@
             </tr>
         </thead>
         <tbody>
-            {% if guide_list %}
-            {% for list in guide_list %}
+            {% if search_list %}
+            {% for list in search_list %}
             <div >
+                <h2>{{location}} 검색결과</h2>
             <tr class="text-center">
                 <td><a href="{% url 'guide_detail' list.id %}"> {{ list.title|truncatechars:30 }}</a></td>
                 <td>{{ list.writer }}</td>
@@ -40,18 +41,6 @@
     {% if request.user %}
         <a href="{% url 'guide_new' %}" >새 글 작성하기</a>
     {% endif %}
-
-    <form action="{%url 'guide_search_by_location' %}" method="GET">
-        <select id="location" name="location">
-            <option value="국내">국내</option>
-            <option value="북미">북미</option>
-            <option value="남미">남미</option>
-            <option value="유럽">유럽</option>
-            <option value="아시아">아시아</option>
-            <option value="오세아니아">오세아니아</option>
-        </select>
-       <button type="submit">검색하기</button>
-    </form>
-
+   
 </body>
 </html>

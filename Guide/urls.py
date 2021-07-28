@@ -21,6 +21,11 @@ from .views import *
 
 urlpatterns = [
     path('',guide_list, name='guide_list'),
-    path('detail/<int:pk>', guide_detail, name='guide_detail'),
+    path('detail/<str:id>', guide_detail, name='guide_detail'),
     path('new/',guide_new,name='guide_new'),
-]
+    path('delete/<str:id>',guide_delete,name='guide_delete'),
+    path('update/<str:id>',guide_update,name='guide_update'),
+    path('search/',guide_search_by_location,name='guide_search_by_location'),
+ 
+] 
+
