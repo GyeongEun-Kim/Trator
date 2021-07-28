@@ -1,41 +1,51 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <form action="{% url 'guide_update' %}" method='POST'>
+    {% block content %}
+    <form action="{% url 'guide_update' guide_update.id %}" method='POST' enctype ="multipart/form-data">
         {% csrf_token %}
-        <label for="title">제목: </label>
-        <input type="text" id="title" name="title">
+            {% if guide_update %}
+                <div>
+                    <label for="title">제목: </label>
+                    <input type="text" id="title" name="title" value="{{guide_update.title}}">
 
-        <label for="location">지역: </label>
-        <select id="location" name="location">
-            <option value="국내">국내</option>
-            <option value="북미">북미</option>
-            <option value="남미">남미</option>
-            <option value="유럽">유럽</option>
-            <option value="아시아">아시아</option>
-            <option value="오세아니아">오세아니아</option>
-        </select>
-        <br>
+                    <label for="location">지역: </label>
+                    <select id="location" name="location" value="{{guide_update.location}}">
+                        <option value="국내">국내</option>
+                        <option value="북미">북미</option>
+                        <option value="남미">남미</option>
+                        <option value="유럽">유럽</option>
+                        <option value="아시아">아시아</option>
+                        <option value="오세아니아">오세아니아</option>
+                    </select>
+                    <br>
 
-        <textarea cols="50" rows="20" id="content" name="content"></textarea>
-        <br>
+                    <textarea cols="50" rows="20" id="content" name="content">{{guide_update.content}}</textarea>
+                    <br>
 
-        <label for="price">가격</label>
-        <input type="number" id="price" name="price">
-        <br>
+                    <label for="price">가격</label>
+                    <input type="number" id="price" name="price" value="{{guide_update.price}}">
+                    <br>
 
-        <label for="image">이미지 첨부</label>
-        <input type="image" id="image" name="image">
-        <br>
+                    <label for="image">이미지 첨부</label>
+                    <input type="file" id="image" name="image" >
+                    
+                    <br>
 
-        <button type="submit">글 올리기</button>
+                    <button type="submit">글 수정하기</button>
+                </div>
+            {% endif %}
     </form>
-
+    {% endblock %}
 </body>
+    
+
 </html>

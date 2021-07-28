@@ -1,13 +1,17 @@
+{% extends 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <form action="{% url 'guide_new' %}" method='POST'>
+    {% block content %}
+    <form action="{% url 'guide_new' %}" method='POST' enctype ="multipart/form-data">
         {% csrf_token %}
         <label for="title">제목: </label>
         <input type="text" id="title" name="title">
@@ -31,11 +35,13 @@
         <br>
 
         <label for="image">이미지 첨부</label>
-        <input type="image" id="image" name="image">
+        <input type="file" id="image" name="image">
         <br>
 
+
+        
         <button type="submit">글 올리기</button>
     </form>
-
+    {% endblock %}
 </body>
 </html>

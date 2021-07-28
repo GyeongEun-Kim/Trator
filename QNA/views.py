@@ -46,3 +46,18 @@ def question_delete(request, id):
     delete_question = Question.objects.get(id = id)
     delete_question.delete()
     return redirect('qna_list')
+
+def answer_new(request, id):
+    question = get_object_or_404(Question, pk = id)
+    return render(request, 'new_answer.html', {'question':question})
+
+def answer_create(request, id):
+    question = get_object_or_404(Question, pk = id)
+    new_answer = Answer(question = question, writer = request.POST['writer'], content = request.POST['content'], date = timezone.now())
+    new_answer.save()
+
+    return redirect('q_detail', id = question.id)
+
+def answer_detail(request, id):
+    answer = get_object_or_404(Answer, pk = id)
+    return render(request, 'qna_answer.html', {'answer': answer})
