@@ -23,7 +23,7 @@
     <h1 class="main_head">회원가입</h1>
     <!-- 메인 SECTION -->
     <section class="main_section">
-      <form action="/account/signup/" method="post">
+      <form action="{% url 'Account:signup'%}" method="post">
         {% csrf_token %}
         <!-- {% if hello_wolrd_ouput %}
           {% for hello_world in hello_world_list %}
@@ -35,25 +35,29 @@
         <div class="form_align">
           <div class="form_detail_align">
             <h3>이메일</h3>
-            <input type="text" placeholder="이메일" name="email_input" />
+            <input type="text" placeholder="이메일" name="email" />
           </div>
           <div class="form_detail_align">
             <h3>비밀번호</h3>
             <h5>8자 이상 입력해주세요.</h5>
-            <input type="password" placeholder="비밀번호" />
+            <input type="password" placeholder="비밀번호" name="password1" />
           </div>
           <div class="form_detail_align">
             <h3>비밀번호 확인</h3>
-            <input type="password" placeholder="비밀번호 확인" />
+            <input
+              type="password"
+              placeholder="비밀번호 확인"
+              name="password2"
+            />
           </div>
           <div class="form_detail_align">
             <h3>별명</h3>
             <h5>다른 유저와 겹치지 않는 별명을 입력해주세요. (2~15자)</h5>
-            <input type="text" placeholder="별명(2~15자)" />
+            <input type="text" placeholder="별명(2~15자)" name="username" />
           </div>
           <div class="form_detail_align">
             <h3>핸드폰 번호</h3>
-            <input type="text" placeholder="핸드폰번호" />
+            <input type="text" placeholder="핸드폰번호" name="phone_number" />
           </div>
           <div class="form_detail_align">
             <button type="submit">완료</button>
