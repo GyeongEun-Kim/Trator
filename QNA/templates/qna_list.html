@@ -1,25 +1,20 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trator-Q&A</title>
-</head>
-<body>
-    <div>
-        <a href="{% url 'q_new' %}">질문하기</a>
-    </div>
-    {% if question_list %}
-        {% for question in question_list %}
-            <h2>{{question.title}}</h2>
-            <span>{{question.writer}}</span>
-            <span>{{question.date}}</span>
-            <a href="{% url 'q_detail' question.id %}">더보기..</a>
-            <br>
-        {% endfor %}
-    {% else %}
-        <h1>질문이 없습니다.</h1>
-    {% endif %}
-    </body>
-</html>
+{% extends 'base.html' %} {% block content %}
+
+<!-- 메인 SECTION -->
+<p>여행 질문</p>
+<div>
+    <a href="{% url 'q_new' %}">질문하기</a>
+</div>
+{% if question_list %}
+    {% for question in question_list %}
+        <h2>{{question.title}}----{{question.answer_set.count}}개의 답변</h2>
+        <span>{{question.writer}}</span>
+        <span>{{question.date}}</span>
+        <a href="{% url 'q_detail' question.id %}">더보기..</a>
+        <br>
+    {% endfor %}
+{% else %}
+    <h1>질문이 없습니다.</h1>
+{% endif %}
+
+{% endblock%}
