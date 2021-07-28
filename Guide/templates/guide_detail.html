@@ -1,12 +1,16 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+    {% block content %}
     {% if guide_detail %}
         <h1>제목 : {{guide_detail.title}}</h1>
         <br>
@@ -28,7 +32,7 @@
         {% endif %}
     {% endif %}
     
-
+    {% endblock %}
     
 </body>
 </html>

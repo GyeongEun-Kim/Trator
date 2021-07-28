@@ -13,13 +13,10 @@ db.sqlite3
 db.sqlite3-journal
 media
 */__pycache__/*
-<<<<<<< HEAD
 */migrations/*
-=======
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
->>>>>>> c46b8081e215733779b6294572ecbb163edb5e6c
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.

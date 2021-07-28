@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.http import request
 from django.shortcuts import get_list_or_404, render
 from django.shortcuts import redirect
@@ -5,6 +6,7 @@ from django.shortcuts import get_object_or_404
 from .models import Guide
 from django.utils import timezone
 from django.contrib import auth
+from django.db.models import Q
 
 def guide_list (request) :
     lists = Guide.objects.all()
@@ -23,11 +25,12 @@ def guide_new (request) :
                                         writer = request.user.username,
                                         date = timezone.localtime(),
                                         location = request.POST['location'],
-                                        price = request.POST['price']
+                                        price = request.POST['price'],
                                     )
-        if (request.FILES['image'] is not None) :
+        if (request.FILES.get('image') is not None) :
             newGuide.image = request.FILES['image']
             newGuide.save()
+    
         return guide_list(request)
     
     if (request.method == 'GET') :
@@ -36,6 +39,7 @@ def guide_new (request) :
 def guide_update (request, id) :
     if (request.method == 'GET') :
         update_guide = get_object_or_404(Guide,pk=id)
+        
         return render (request,'guide_update.html',{'guide_update':update_guide})
 
     elif (request.method == 'POST') :
@@ -56,7 +60,10 @@ def guide_delete (request, id) :
         return guide_list(request)
 
 def guide_search_by_location (request) :
-    location = request.GET['location']
-    locations = get_list_or_404(Guide,location=location)
-    return render (request, 'guide_search',{'search_list':locations},location)
-
+    search_key = request.GET['location']
+    # search_list = Guide.objects.all()
+    
+    search_list = Guide.objects.filter(location=search_key)
+    
+    
+    return render(request,'guide_list.html',{'guide_list':search_list})
