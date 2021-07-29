@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load bootstrap4%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,14 +19,28 @@
     <link rel="stylesheet" type="text/css" href="{%static 'css/styles.css'%}" />
   </head>
   <body>
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+      <div>
+        <h1 class="main_head">회원가입</h1>
+      </div>
+      <div>
+        <form action="{% url 'Account:signup'%}" method="post">
+          {% csrf_token %} {% bootstrap_form form %}
+          <input
+            type="submit"
+            value="register"
+            class="btn btn-dark rounded-pill col-6 mt-3"
+          />
+        </form>
+      </div>
+    </div>
     <!-- 메인 TITLE -->
-    <h1 class="main_head">회원가입</h1>
+    <!-- <h1 class="main_head">회원가입</h1> -->
     <!-- 메인 SECTION -->
-    <section class="main_section">
+    <!-- <section class="main_section">
       <form action="{% url 'Account:signup'%}" method="post">
-        {% csrf_token %}
-        {{form}}
-        <!-- <div class="form_align">
+        <-- {% csrf_token %} -->
+    <!-- <div class="form_align">
           <div class="form_detail_align">
             <h3>이메일</h3>
             <input type="text" placeholder="이메일" name="email" />
@@ -50,14 +64,14 @@
             <input type="text" placeholder="별명(2~15자)" name="username" />
           </div>
           <div class="form_detail_align"> -->
-            <!-- <h3>핸드폰 번호</h3>
+    <!-- <h3>핸드폰 번호</h3>
             <input type="text" placeholder="핸드폰번호" name="phone_number" />
           </div>
           <div class="form_detail_align"> -->
-            <button type="submit">완료</button>
-          </div>
+    <!-- <button type="submit">완료</button> -->
+    <!-- </div>
         </div>
-      </form>
-    </section>
+      </form> -->
+    <!-- </section> -->
   </body>
 </html>
