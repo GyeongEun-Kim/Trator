@@ -13,7 +13,10 @@
     </div>
     <div>
         <span>{{question.content}}</span>
-        <img src="{{question.image}}">
+        {% if question.image %}
+        <img src="{{question.image.url}}" height="600">
+        {% endif %}
+        
     </div>     
 </div>
 <a href="{% url 'q_edit' question.id %}">수정하기</a>
