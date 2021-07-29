@@ -12,7 +12,7 @@ urlpatterns = [
     path('answer/new/<str:id>', answer_new, name="a_new"),
     path('answer/create/<str:id>', answer_create, name="a_create"),
     path('answer/<str:id>', answer_detail, name='a_detail'),
-    path('answer/edit/<str:id>', question_edit, name="a_edit"),
-    path('answer/update/<str:id>', question_update, name="a_update"),
-    path('answer/delete/<str:id>', question_delete, name = "a_delete"),
+    path('answer/edit/<str:id>', answer_edit, name="a_edit"),
+    path('answer/update/<str:id>', answer_update, name="a_update"),
+    path('answer/delete/<str:id>', answer_delete, name = "a_delete"),
 ]

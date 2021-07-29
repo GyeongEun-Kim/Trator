@@ -16,10 +16,11 @@
 </div>
 <br><br><br><br>
 <p>답변하기</p>
-<form action="{%url 'a_create' question.id%}" method="POST">
+<form action="{%url 'a_create' question.id%}" method="POST" enctype ="multipart/form-data">
     {%csrf_token%}
     <p>작성자: <input type="text" name="writer" placeholder="작성자"></p>
     <p>내용: <textarea name="content" id="" cols="30" rows="10" placeholder="내용을 입력하세요."></textarea></p>
+    <p>이미지 첨부 <input type="file" id="image" name="image"></p>
     <input type="submit" value="답변하기">
 </form>
 {% endblock%}

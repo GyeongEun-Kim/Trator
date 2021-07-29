@@ -4,6 +4,9 @@
 <p>{{answer.writer}}</p>
 <p>{{answer.date}}</p><br>
 <p>{{answer.content}}</p>
+{% if answer.image %}
+   <p><img src="{{answer.image.url}}" height="600"></p>
+{% endif %}
 
 <a href="{% url 'a_edit' answer.id %}">답변 수정</a>
 <a href="{% url 'a_delete' answer.id %}">답변 삭제</a>

@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <!-- 메인 SECTION -->
-<form action="{%url 'q_create'%}" method="POST">
+<form action="{%url 'q_create'%}" method="POST" enctype ="multipart/form-data">
     {%csrf_token%}
     <p>제목: <input type="text" name="title" placeholder="제목을 입력하세요."></p>
     <p>작성자: <input type="text" name="writer" placeholder="작성자"></p>
@@ -15,6 +15,7 @@
         <option value="북아메리카">북아메리카</option>
     </select></p>
     <p>내용: <textarea name="content" id="" cols="30" rows="10" placeholder="내용을 입력하세요."></textarea></p>
+    <p>이미지 첨부 <input type="file" id="image" name="image"></p>
     <input type="submit" value="질문하기">
 </form>
 
