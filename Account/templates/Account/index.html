@@ -1,7 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 
 <!-- 메인 SECTION -->
-<section class="main_section" style="display: none">
+<section class="main_section">
+  {% if user.is_authenticated %} {{user.username}} {% endif%}
   <form action="">
     <div></div>
   </form>
