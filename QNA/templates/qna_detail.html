@@ -19,8 +19,10 @@
         
     </div>     
 </div>
-<a href="{% url 'q_edit' question.id %}">수정하기</a>
-<a href="{% url 'q_delete' question.id %}">질문 삭제</a>
+{% if question.writer == user.username %}
+    <a href="{% url 'q_edit' question.id %}">수정하기</a>
+    <a href="{% url 'q_delete' question.id %}">질문 삭제</a>
+{%endif%}
 <a href="{% url 'qna_list' %}">첫 페이지</a>
 <br>
 <br>
@@ -29,11 +31,12 @@
 <div>
     <ul>
     {% for answer in question.answer_set.all %}
-        <a href="{% url 'a_detail' answer.id %}">{{answer.writer}}님의 답변입니다.</a>
+        <a href="{% url 'a_detail' answer.id %}">{{answer.writer}}님의 답변입니다.</a><br>
     {%endfor%}
     </ul>
 </div>
 
+{% if user.membership == False%}
 <a href="{%url 'a_new' question.id %}">답변하기</a>
-
+{%endif%}
 {% endblock%}
