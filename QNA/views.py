@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Question, Answer
 from django.utils import timezone
 from django.contrib.auth.models import User
+from Account.models import CustomUser
 
 # Create your views here.
 
@@ -20,6 +21,7 @@ def question_new(request):
 
 def question_create(request):
     new_question = Question()
+    new_question.author = request.user
     new_question.title = request.POST['title']
     new_question.writer = request.user.username
     new_question.location = request.POST['location']
@@ -58,7 +60,7 @@ def answer_new(request, id):
 
 def answer_create(request, id):
     question = get_object_or_404(Question, pk = id)
-    new_answer = Answer(question = question, writer = request.user.username, content = request.POST['content'], date = timezone.now())
+    new_answer = Answer(question = question, author = request.user ,writer = request.user.username, content = request.POST['content'], date = timezone.now())
     if (request.FILES.get('image') is not None) :
             new_answer.image = request.FILES['image']
     new_answer.save()
@@ -97,8 +99,13 @@ def question_search(request):
 def answer_adopt(request, id):
     adopted_answer = Answer.objects.get(id = id)
     adopting_question = Question.objects.get(id = adopted_answer.question.id)
+    # user = CustomUser.objects.get(pk = adopted_answer.author.pk)
+    # user.point = user.point + 1000
     adopted_answer.like = True
+    adopted_answer.author.point += 1000
     adopting_question.vote = True
+    # user.save()
     adopting_question.save()
-    adopted_answer.save()           
+    adopted_answer.save()
+    adopted_answer.author.save()
     return redirect('a_detail', adopted_answer.id)
