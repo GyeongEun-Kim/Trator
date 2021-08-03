@@ -1,20 +1,36 @@
 {% extends 'base.html' %} {% block content %}
 
 <!-- 메인 SECTION -->
-<p>여행 질문</p>
+<p>여행 질문 목록</p>
+<br>
 <div>
     <a href="{% url 'q_new' %}">질문하기</a>
 </div>
+<br>
 {% if question_list %}
     {% for question in question_list %}
+        {% if question.vote %}
+            <p>채택된 질문입니다.</p>
+        {% endif %}
         <h2>{{question.title}}----{{question.answer_set.count}}개의 답변</h2>
         <span>{{question.writer}}</span>
         <span>{{question.date}}</span>
         <a href="{% url 'q_detail' question.id %}">더보기..</a>
         <br>
+        <br>
     {% endfor %}
 {% else %}
     <h1>질문이 없습니다.</h1>
 {% endif %}
-
+<form action="{%url 'q_search' %}" method="GET">
+    <select id="location" name="location">
+        <option value="국내">국내</option>
+        <option value="북미">북미</option>
+        <option value="남미">남미</option>
+        <option value="유럽">유럽</option>
+        <option value="아시아">아시아</option>
+        <option value="오세아니아">오세아니아</option>
+    </select>
+   <button type="submit">검색하기</button>
+</form>
 {% endblock%}
