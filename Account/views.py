@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from .models import CustomUser
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm
 
@@ -8,7 +9,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import redirect, render
 # Create your views here.
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 
 def index(request):
@@ -48,22 +49,28 @@ def register_view(request):
         return render(request, 'Account/signup_view.html', {"form": form})
 
 
-def signup(request):
-    # if request.method == 'POST':
-    #     form = UserCreationForm(request.POST)
-    #     if form.is_valid():
-    #         user = form.save()
-    #     return redirect('index')
-    # else:
-    # form = UserCreationForm()
-    return render(request, 'account/signup.html')
+class AccountDetailView(DetailView):
+    model = CustomUser
+    context_object_name = 'target_user'
+    template_name = 'Account/detail.html'
 
 
-class AccountCreateView(CreateView):
-    model = User
-    form_class = UserCreationForm
-    success_url = reverse_lazy('Account:index')
-    template_name = 'Account/signup.html'
+# def signup(request):
+#     # if request.method == 'POST':
+#     #     form = UserCreationForm(request.POST)
+#     #     if form.is_valid():
+#     #         user = form.save()
+#     #     return redirect('index')
+#     # else:
+#     # form = UserCreationForm()
+#     return render(request, 'account/signup.html')
+
+
+# class AccountCreateView(CreateView):
+#     model = User
+#     form_class = UserCreationForm
+#     success_url = reverse_lazy('Account:index')
+#     template_name = 'Account/signup.html'
 
 
 # def signup(request):
