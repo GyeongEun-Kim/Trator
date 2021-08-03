@@ -4,7 +4,7 @@
     <br />
   </div>
   <div>
-    <form action="" method="post">
+    <form action="{% url 'Account:signup_view'%}" method="post">
       {%csrf_token%} {{form.as_p }}
       <button type="submit">submit</button>
     </form>

@@ -6,5 +6,5 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=25, null=True)
-    point = models.IntegerField(null=True)
-    membership = models.BooleanField(null=True)
+    point = models.IntegerField(null=True, default=0)
+    membership = models.BooleanField(null=True,  default=False)
