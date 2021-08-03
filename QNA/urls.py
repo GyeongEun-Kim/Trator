@@ -9,10 +9,12 @@ urlpatterns = [
     path('question/edit/<str:id>', question_edit, name="q_edit"),
     path('question/update/<str:id>', question_update, name="q_update"),
     path('question/delete/<str:id>', question_delete, name = "q_delete"),
+    path('search/', question_search, name="q_search"),
     path('answer/new/<str:id>', answer_new, name="a_new"),
     path('answer/create/<str:id>', answer_create, name="a_create"),
     path('answer/<str:id>', answer_detail, name='a_detail'),
     path('answer/edit/<str:id>', answer_edit, name="a_edit"),
     path('answer/update/<str:id>', answer_update, name="a_update"),
     path('answer/delete/<str:id>', answer_delete, name = "a_delete"),
+    path('answer/adopt/<str:id>', answer_adopt, name='a_adopt')
 ]

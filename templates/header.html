@@ -22,6 +22,7 @@
         </div>
         {%else%}
         <div class="nav_menu_align_right">
+          <span>{{user.point}}포인트 / </span>
           <a href="{% url 'Account:logout_view'%}?next={{ request.path }}"
             >로그아웃</a
           >

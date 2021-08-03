@@ -4,7 +4,6 @@
 <!-- 메인 SECTION -->
 <form action="{%url 'a_update' answer.id%}" method="POST" enctype ="multipart/form-data">
     {%csrf_token%}
-    <p>작성자: <input type="text" name="writer" value="{{answer.writer}}"></p>
     <p>내용: <textarea name="content" id="" cols="30" rows="10">{{answer.content}}</textarea></p>
     <p>이미지 첨부 <input type="file" id="image" name="image"></p>
     <input type="submit" value="질문하기">
