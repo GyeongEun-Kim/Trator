@@ -26,6 +26,11 @@ urlpatterns = [
     path('delete/<str:id>',guide_delete,name='guide_delete'),
     path('update/<str:id>',guide_update,name='guide_update'),
     path('search/',guide_search_by_location,name='guide_search_by_location'),
+    path('kakaopay_index',kakaopay_index,name='kakaopay_index'),
+    path('kakaopay_process',kakaopay_process,name='kakaopay_process'),
+    path('kakaopay_success',kakaopay_success,name='kakaopay_success'),
+    path('kakaopay_fail',kakaopay_fail,name='kakaopay_fail'),
+    path('kakaopay_cancel',kakaopay_cancel,name='kakaopay_cancel'),
  
 ] 
 

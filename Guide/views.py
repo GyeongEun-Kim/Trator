@@ -1,12 +1,10 @@
 from django.db.models.query import QuerySet
 from django.http import request
-from django.shortcuts import get_list_or_404, render
-from django.shortcuts import redirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404 , redirect, render
 from .models import Guide
 from django.utils import timezone
-from django.contrib import auth
-from django.db.models import Q
+import requests
+
 
 def guide_list (request) :
     lists = Guide.objects.all()
@@ -67,3 +65,78 @@ def guide_search_by_location (request) :
     
     
     return render(request,'guide_list.html',{'guide_list':search_list})
+
+def kakaopay_index (request) :
+    if request.method=="GET" :
+        return render(request,'kakaopay/index.html')
+ 
+def kakaopay_process (request):
+    if request.method == "POST":
+        URL = 'https://kapi.kakao.com/v1/payment/ready'
+        headers = {
+            "Authorization": "KakaoAK " + "68a707d09ab3ccb120449c0bbcb3beaf",   # 변경불가
+            "Content-type": "application/x-www-form-urlencoded;charset=utf-8",  # 변경불가
+        }
+        params = {
+            "cid": "TC0ONETIME",    # 테스트용 코드
+            "partner_order_id": "1001",     # 주문번호
+            "partner_user_id": "kekim20",    # 유저 아이디
+            "item_name": "트래토 가이드",        # 구매 물품 이름
+            "quantity": "1",                # 구매 물품 수량
+            "total_amount": "12000",        # 구매 물품 가격
+            "tax_free_amount": "0",         # 구매 물품 비과세
+            "approval_url": "http://127.0.0.1:8000/guide/kakaopay_success",
+            "cancel_url": "http://127.0.0.1:8000/guide/kakaopay_cancel",
+            "fail_url": "http://127.0.0.1:8000/guide/kakaopay_fail",
+        }
+
+        res = requests.post(URL, headers=headers, params=params)
+        request.session['tid'] = res.json()['tid']      # 결제 승인시 사용할 tid를 세션에 저장
+        next_url = res.json()['next_redirect_pc_url']   # 결제 페이지로 넘어갈 url을 저장
+        return redirect(next_url)
+
+def kakaopay_success (request) :
+     _url = 'https://kapi.kakao.com/v1/payment/approve'
+     _admin_key = '68a707d09ab3ccb120449c0bbcb3beaf' # 입력필요
+     _headers = {
+        'Authorization': f'KakaoAK {_admin_key}'
+    }
+     _data = {
+        'cid':'TC0ONETIME',
+        'tid': request.session['tid'],
+        'partner_order_id':'1001',
+        'partner_user_id':'kekim20',
+        'pg_token': request.GET['pg_token'],
+        'item_name': '트래토 가이드',
+        "total_amount": "12000",
+    }
+     _res = requests.post(_url, data=_data, headers=_headers)
+
+    # _amount = _res.json()['total_amount']
+     _res = _res.json()
+     context = {
+        'res': _res,
+        'amount': _res.get('total_amount'),
+    }
+     return render(request, 'kakaopay/success.html', context)
+
+    #  _result = _res.json()
+
+
+    # #  if _result.get('msg'):
+    # #     return redirect('kakaopay_fail')
+    # #  else:
+    # #     # * 사용하는 프레임워크별 코드를 수정하여 배포하는 방법도 있지만
+    # #     #   Req Header를 통해 분기하는 것을 추천
+    # #     # - Django 등 적용 시
+    # #     return render(request, 'kakaopay/success.html')
+        
+
+def kakaopay_fail (request):
+    return render(request, 'kakaopay/fail.html')
+def kakaopay_cancel (request):
+    return render(request, 'kakaopay/cancel.html')
+ 
+
+def select_location (request) :
+    return render (request)
