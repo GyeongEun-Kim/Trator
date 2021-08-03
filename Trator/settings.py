@@ -18,8 +18,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Media files - 업로드를 하는 URL과 디렉토리 설정
-MEDIA_URL = '/media/' # 업로드 할 경로
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #로컬 디렉토리 어디에 저장할 것인지
+MEDIA_URL = '/media/'  # 업로드 할 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 로컬 디렉토리 어디에 저장할 것인지
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     'Guide.apps.GuideConfig',
     'Account.apps.AccountConfig',
     'bootstrap4',
-    
-    ]
+
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -137,8 +137,8 @@ STATICFILES_DIRS = [
     BASE_DIR/"static",
 ]
 
-LOGIN_REDIRECT_URL = reverse_lazy('Account:index')
-LOGOUT_REDIRECT_URL = reverse_lazy('Account:login')
+# LOGIN_REDIRECT_URL = reverse_lazy('Account:index')
+# LOGOUT_REDIRECT_URL = reverse_lazy('Account:login')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
