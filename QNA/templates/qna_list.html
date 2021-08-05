@@ -3,9 +3,11 @@
 <!-- 메인 SECTION -->
 <p>여행 질문 목록</p>
 <br>
-<div>
-    <a href="{% url 'q_new' %}">질문하기</a>
-</div>
+{% if request.user %}
+    <div>
+        <a href="{% url 'q_new' %}">질문하기</a>
+    </div>
+{% endif %}
 <br>
 {% if question_list %}
     {% for question in question_list %}
