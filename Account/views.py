@@ -66,7 +66,7 @@ class AccountDetailView(ListView):
         def get_queryset(self):
             question = Question.objects.filter(writer = self.request.user.username)
             answer = Answer.objects.filter(writer = self.request.user.username)
-            guide = Guide.objects.filter(writer = self.request.user.username)
+            guide = Guide.objects.filter(writer = self.request.user)
             queryset = {'question': question, 'answer':answer, 'guide':guide, 'user':self.request.user}
             return queryset
     else:
