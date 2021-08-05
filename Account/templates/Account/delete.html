@@ -1,16 +1,22 @@
-{%extends 'base.html' %} {% block content %}
+{%extends 'base.html' %} {% block content %} {% if target_user == user %}
 
 <div style="text-align: center; max-width: 500px; margin: 4rem auto">
   <div>
-    <h1>Quit</h1>
+    <h1>탈퇴하시겠습니까?</h1>
     <br />
   </div>
   <div>
-    <form action="{% url 'Account:delete' pk=user.pk%}" method="post">
+    <form action="{% url 'Account:delete' pk=target_user.pk%}" method="post">
       {%csrf_token%}
-      <button type="submit">submit</button>
+      <button type="submit">네</button>
     </form>
   </div>
 </div>
-
-{% endblock %}
+{% else %}
+<div>
+  <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+    <!-- <p>{{user.date_joined}}</p> -->
+    <h2>접근 권한이 없습니다.</h2>
+  </div>
+</div>
+{%endif%} {% endblock %}

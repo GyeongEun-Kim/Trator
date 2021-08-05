@@ -1,12 +1,21 @@
+{% if target_user == user %}
 <div style="text-align: center; max-width: 500px; margin: 4rem auto">
   <div>
     <h1>Change info</h1>
     <br />
   </div>
   <div>
-    <form action="{% url 'Account:update' pk=user.pk%}" method="post">
+    <form action="{% url 'Account:update' pk=target_user.pk%}" method="post">
       {%csrf_token%} {{form.as_p }}
       <button type="submit">submit</button>
     </form>
   </div>
 </div>
+{% else %}
+<div>
+  <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+    <!-- <p>{{user.date_joined}}</p> -->
+    <h2>접근 권한이 없습니다.</h2>
+  </div>
+</div>
+{%endif%}

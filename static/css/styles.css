@@ -1,4 +1,4 @@
-@import "reset.css";
+/* @import "reset.css"; */
 @import "variables.css";
 
 /* Components */
@@ -43,3 +43,10 @@ body {
 /* .main-screen {
   padding: 0px var(--horizontal-space);
 } */
+
+.form_align_center {
+  font-size: 5rem;
+  text-align: center;
+  max-width: 500px;
+  margin: 4rem auto;
+}
