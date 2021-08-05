@@ -1,9 +1,11 @@
 from django.db.models.query import QuerySet
 from django.http import request
 from django.shortcuts import get_object_or_404 , redirect, render
-from .models import Guide
+from .models import Guide, MapData
 from django.utils import timezone
-import requests
+import json, requests
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 
 
 def guide_list (request) :
@@ -12,7 +14,19 @@ def guide_list (request) :
 
 def guide_detail(request,id) :
     guide_detail = get_object_or_404(Guide,pk=id)
-    return render (request,'guide_detail.html',{'guide_detail':guide_detail})
+    map_data = get_object_or_404(MapData,pk=id)
+    map_title = map_data.keys.replace("[",'').replace("]",'').replace("'",'')
+    
+    map_latlng = str(eval(map_data.keysvalues).values())[14:-3].replace("'",'')
+    
+    
+    content = {
+        'guide_detail' : guide_detail,
+        'map_title' : map_title,
+        'map_latlng' : map_latlng,
+        'cnt' : map_data.cnt,
+    }
+    return render (request,'guide_detail.html',{'content':content})
 
 
 def guide_new (request) :
@@ -20,7 +34,7 @@ def guide_new (request) :
     if (request.method == 'POST') :
         newGuide = Guide.objects.create(title = request.POST['title'],
                                         content = request.POST['content'],
-                                        writer = request.user.username,
+                                        writer = request.user,
                                         date = timezone.localtime(),
                                         location = request.POST['location'],
                                         price = request.POST['price'],
@@ -53,8 +67,10 @@ def guide_update (request, id) :
 
 def guide_delete (request, id) :
     if (request.method == 'GET') :
-        guide = get_object_or_404(Guide,pk=id) 
+        guide = get_object_or_404(Guide,pk=id)
+        map = get_object_or_404(MapData,pk=id)
         guide.delete()
+        map.delete()
         return guide_list(request)
 
 def guide_search_by_location (request) :
@@ -138,5 +154,8 @@ def kakaopay_cancel (request):
     return render(request, 'kakaopay/cancel.html')
  
 
-def select_location (request) :
-    return render (request)
+@csrf_exempt
+def save_map_data (request) :
+    dict = json.loads(request.body)
+    MapData.objects.create(keys = dict['keys'], keysvalues = dict['keysvalues'], cnt= dict['cnt'])
+    return HttpResponse('kkk')

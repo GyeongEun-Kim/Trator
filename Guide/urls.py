@@ -31,6 +31,7 @@ urlpatterns = [
     path('kakaopay_success',kakaopay_success,name='kakaopay_success'),
     path('kakaopay_fail',kakaopay_fail,name='kakaopay_fail'),
     path('kakaopay_cancel',kakaopay_cancel,name='kakaopay_cancel'),
+    path('save_map_data',save_map_data,name='save_map_data'),
  
 ] 
 
