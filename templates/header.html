@@ -18,6 +18,9 @@
         <div class="nav_menu_align_right">
           <a href="{% url 'Account:login'%}?next={{ request.path }}">로그인</a>
         </div>
+        <div class="nav_menu_align_right">
+          <a href="{% url 'Account:signup'%}">회원가입</a>
+        </div>
         {%else%}
         <div class="nav_menu_align_right">
           <span>{{user.point}}포인트 / </span>
@@ -29,9 +32,6 @@
           <a href="{% url 'Account:detail' pk=user.pk%}">내정보</a>
         </div>
         {%endif%}
-        <div class="nav_menu_align_right">
-          <a href="{% url 'Account:signup'%}">회원가입</a>
-        </div>
       </div>
     </div>
   </div>

@@ -1,3 +1,7 @@
+
+from Account.decorators import account_ownership_required
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from Guide.models import Guide
 from QNA.models import Answer, Question
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -8,11 +12,13 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm, UpdateForm
 
 from django.contrib import auth
-from django.http import HttpResponseRedirect, HttpResponse, request
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden, request
 from django.shortcuts import redirect, render
 # Create your views here.
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, DeleteView
+
+has_ownership = [account_ownership_required, login_required]
 
 
 def index(request):
@@ -52,6 +58,7 @@ def register_view(request):
         form = RegisterForm()
         return render(request, 'Account/signup.html', {"form": form})
 
+@method_decorator(has_ownership, 'get')
 class AccountDetailView(ListView):
     if CustomUser.is_authenticated:
         template_name = 'Account/detail.html'
@@ -74,14 +81,20 @@ class AccountDetailView(ListView):
 #         template_name = 'Account/index.html'
 
 
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
 class AccountUpdateView(UpdateView):
     model = CustomUser
+    context_object_name = 'target_user'
     form_class = UpdateForm
     success_url = reverse_lazy('Account:index')
     template_name = 'Account/update.html'
 
 
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
 class AccountDeleteView(DeleteView):
     model = CustomUser
+    context_object_name = 'target_user'
     success_url = reverse_lazy('Account:login')
     template_name = 'Account/delete.html'
