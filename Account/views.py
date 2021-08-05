@@ -1,6 +1,9 @@
+
 from Account.decorators import account_ownership_required
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from Guide.models import Guide
+from QNA.models import Answer, Question
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.views.generic.edit import UpdateView
@@ -9,11 +12,11 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm, UpdateForm
 
 from django.contrib import auth
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden, request
 from django.shortcuts import redirect, render
 # Create your views here.
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView, DeleteView
+from django.views.generic import CreateView, DetailView, ListView, DeleteView
 
 has_ownership = [account_ownership_required, login_required]
 
@@ -55,12 +58,27 @@ def register_view(request):
         form = RegisterForm()
         return render(request, 'Account/signup.html', {"form": form})
 
-
 @method_decorator(has_ownership, 'get')
-class AccountDetailView(DetailView):
-    model = CustomUser
-    context_object_name = 'target_user'
-    template_name = 'Account/detail.html'
+class AccountDetailView(ListView):
+    if CustomUser.is_authenticated:
+        template_name = 'Account/detail.html'
+        context_object_name = 'target_user'
+        def get_queryset(self):
+            question = Question.objects.filter(writer = self.request.user.username)
+            answer = Answer.objects.filter(writer = self.request.user.username)
+            guide = Guide.objects.filter(writer = self.request.user.username)
+            queryset = {'question': question, 'answer':answer, 'guide':guide, 'user':self.request.user}
+            return queryset
+    else:
+        template_name = 'Account/index.html'
+
+# class AccountDetailView(DetailView):
+#     if CustomUser.is_authenticated:
+#         model = CustomUser
+#         context_object_name = 'target_user'
+#         template_name = 'Account/detail.html'
+#     else:
+#         template_name = 'Account/index.html'
 
 
 @method_decorator(has_ownership, 'get')
