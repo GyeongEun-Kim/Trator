@@ -2,21 +2,13 @@
 @import "variables.css";
 
 /* Components */
-/* @import "components/status-bar.css";
-@import "components/nav-bar.css";
-@import "components/screen-header.css";
-@import "components/user-component.css";
-@import "components/badge.css";
-@import "components/icon-row.css";
-@import "components/settings.css";
-@import "components/no-mobile.css"; */
 
 /* Screens */
 @import "screens/nav.css";
 @import "screens/signup.css";
-/* @import "screens/search.css";
-@import "screens/more.css";
-@import "screens/chat.css"; */
+@import "screens/align.css";
+@import "screens/index.css";
+@import "screens/login.css";
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -24,34 +16,4 @@ body {
   height: 90vh;
   color: #2e363e;
   margin: 0 200px;
-}
-
-.main_head {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 30px;
-  margin: 2rem 0;
-}
-
-.form_align_center {
-  font-size: 5rem;
-  text-align: center;
-  max-width: 500px;
-  margin: 4rem auto;
-}
-
-.header_align {
-  border-radius: 1rem;
-  margin: 2rem;
-}
-
-.section_align {
-  height: 45rem;
-}
-
-.footer_align {
-  height: 10rem;
-  margin: 2rem;
 }
