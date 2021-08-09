@@ -5,7 +5,7 @@
     <br />
   </div>
   <div>
-    <form action="{% url 'Account:update' pk=target_user.pk%}" method="post">
+    <form action="{% url 'Account:update' pk=user.pk%}" method="post">
       {%csrf_token%} {{form.as_p }}
       <button type="submit">submit</button>
     </form>

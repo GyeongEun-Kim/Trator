@@ -1,22 +1,11 @@
-/* @import "reset.css"; */
+@import "reset.css";
 @import "variables.css";
 
 /* Components */
-/* @import "components/status-bar.css";
-@import "components/nav-bar.css";
-@import "components/screen-header.css";
-@import "components/user-component.css";
-@import "components/badge.css";
-@import "components/icon-row.css";
-@import "components/settings.css";
-@import "components/no-mobile.css"; */
 
 /* Screens */
 @import "screens/nav.css";
 @import "screens/signup.css";
-/* @import "screens/search.css";
-@import "screens/more.css";
-@import "screens/chat.css"; */
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -26,23 +15,16 @@ body {
   margin: 0 200px;
 }
 
+/* PageAlgin */
+
 .main_head {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 30px;
-  margin: 15px 0;
+  font-size: 2rem;
+  margin: 2rem 0;
 }
-
-.main_section {
-  margin-top: 30px;
-  border-top: 1px solid grey;
-}
-
-/* .main-screen {
-  padding: 0px var(--horizontal-space);
-} */
 
 .form_align_center {
   font-size: 5rem;
@@ -50,3 +32,23 @@ body {
   max-width: 500px;
   margin: 4rem auto;
 }
+
+.main_height {
+  height: 28rem;
+  border-radius: 1rem;
+  margin: 2rem;
+}
+
+.block_align {
+  height: 35rem;
+}
+
+.footer_align {
+  height: 10rem;
+  border-radius: 1rem;
+  margin: 2rem;
+}
+
+/* .header_align {
+  margin-top: 2rem;
+} */

@@ -58,16 +58,23 @@ def register_view(request):
         form = RegisterForm()
         return render(request, 'Account/signup.html', {"form": form})
 
-@method_decorator(has_ownership, 'get')
+
+# @method_decorator(has_ownership, 'get')
 class AccountDetailView(ListView):
     if CustomUser.is_authenticated:
+        model = CustomUser
         template_name = 'Account/detail.html'
         context_object_name = 'target_user'
+
         def get_queryset(self):
-            question = Question.objects.filter(writer = self.request.user.username)
-            answer = Answer.objects.filter(writer = self.request.user.username)
-            guide = Guide.objects.filter(writer = self.request.user.username)
-            queryset = {'question': question, 'answer':answer, 'guide':guide, 'user':self.request.user}
+            question = Question.objects.filter(
+                writer=self.request.user.pk)
+            answer = Answer.objects.filter(
+                writer=self.request.user.pk)
+            guide = Guide.objects.filter(
+                writer=self.request.user.pk)
+            queryset = {'question': question, 'answer': answer,
+                        'guide': guide, 'user': self.request.user}
             return queryset
     else:
         template_name = 'Account/index.html'
@@ -81,8 +88,8 @@ class AccountDetailView(ListView):
 #         template_name = 'Account/index.html'
 
 
-@method_decorator(has_ownership, 'get')
-@method_decorator(has_ownership, 'post')
+# @method_decorator(has_ownership, 'get')
+# @method_decorator(has_ownership, 'post')
 class AccountUpdateView(UpdateView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -91,8 +98,8 @@ class AccountUpdateView(UpdateView):
     template_name = 'Account/update.html'
 
 
-@method_decorator(has_ownership, 'get')
-@method_decorator(has_ownership, 'post')
+# @method_decorator(has_ownership, 'get')
+# @method_decorator(has_ownership, 'post')
 class AccountDeleteView(DeleteView):
     model = CustomUser
     context_object_name = 'target_user'
