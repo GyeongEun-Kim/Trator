@@ -26,7 +26,7 @@ def question_create(request):
     new_question.writer = request.user.username
     new_question.location = request.POST['location']
     new_question.content = request.POST['content']
-    new_question.date = timezone.now()
+    new_question.date = timezone.localtime()
     new_question.vote = False
     if (request.FILES.get('image') is not None) :
             new_question.image = request.FILES['image']
@@ -42,7 +42,7 @@ def question_update(request, id):
     update_question = Question.objects.get(id = id)
     update_question.title = request.POST['title']
     update_question.content = request.POST['content']
-    update_question.date = timezone.now()
+    update_question.date = timezone.localtime()
     if (request.FILES.get('image') is not None) :
         update_question.image = request.FILES['image']
     update_question.save()
@@ -60,7 +60,7 @@ def answer_new(request, id):
 
 def answer_create(request, id):
     question = get_object_or_404(Question, pk = id)
-    new_answer = Answer(question = question, author = request.user ,writer = request.user.username, content = request.POST['content'], date = timezone.now())
+    new_answer = Answer(question = question, author = request.user ,writer = request.user.username, content = request.POST['content'], date = timezone.localtime())
     if (request.FILES.get('image') is not None) :
             new_answer.image = request.FILES['image']
     new_answer.save()
@@ -78,7 +78,7 @@ def answer_edit(request, id):
 def answer_update(request, id):
     update_answer = Answer.objects.get(id = id)
     update_answer.content = request.POST['content']
-    update_answer.date = timezone.now()
+    update_answer.date = timezone.localtime()
     if (request.FILES.get('image') is not None) :
         update_answer.image = request.FILES['image']
     update_answer.save()
