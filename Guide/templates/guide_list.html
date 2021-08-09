@@ -1,19 +1,14 @@
 {% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-</head>
-<body>
     {% block content %}
-    <table>
+    <div class="wrap-lists">
+    <table class="list-table">
+        <div class="trator_guide" >
+            트래토 가이드
+        </div>
+        {% if request.user.is_authenticated %}
+        <a class="new_guide" href="{% url 'guide_new' %}" >새 글 작성하기</a>
+        {% endif %}
         <thead>
             <tr class = "text-center">
                 <th>제목</th>
@@ -26,7 +21,7 @@
             {% for list in guide_list %}
             <div >
                 
-            <tr class="text-center">
+            <tr class="list_content">
                 <td><a href="{% url 'guide_detail' list.id %}">
                     {{ list.title|truncatechars:30 }}</a></td>
                 <td>{{ list.writer }}</td>
@@ -46,11 +41,9 @@
     </table>
 
     <br>
-    {% if request.user.is_authenticated %}
-        <a href="{% url 'guide_new' %}" >새 글 작성하기</a>
-    {% endif %}
+    
 
-    <form action="{%url 'guide_search_by_location' %}" method="GET">
+    <form action="{%url 'guide_search_by_location' %}" method="GET" class="guide_search">
         <select id="location" name="location">
             <option value="국내">국내</option>
             <option value="북미">북미</option>
@@ -61,7 +54,5 @@
         </select>
        <button type="submit">검색하기</button>
     </form>
-
+</div>
     {% endblock %}
-</body>
-</html>

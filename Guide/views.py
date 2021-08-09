@@ -6,6 +6,7 @@ from django.utils import timezone
 import json, requests
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 
 
 def guide_list (request) :

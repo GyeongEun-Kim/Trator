@@ -1,7 +1,31 @@
 <div class="header_align">
   <!-- 메인 TITLE -->
-  <div>
-    <h1 class="main_head"><a href="{%url 'Account:index'%}">Trator</a></h1>
+  <div class="title_align">
+    <div class="main_head">
+      <a href="{%url 'Account:index'%}">Trator</a>
+    </div>
+    {% if user.is_authenticated %}
+    <div style="display: flex">
+      <h4 style="padding: 3px 5px; font-weight: 500">
+        Welcom! {{user.username}}
+      </h4>
+      <span
+        style="
+          margin-left: 5px;
+          background-color: #4468e2;
+          border-radius: 1rem;
+          padding: 3px 5px;
+          color: white;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <a href="{% url 'Account:detail' pk=user.pk%}">my page</a>
+      </span>
+    </div>
+    {%endif%}
   </div>
   <!-- 메인 NAV -->
   <div class="main_nav">
@@ -30,9 +54,7 @@
             >로그아웃</a
           >
         </div>
-        <div class="nav_menu_align_right">
-          <a href="{% url 'Account:detail' pk=user.pk%}">내정보</a>
-        </div>
+
         {%endif%}
       </div>
     </div>
