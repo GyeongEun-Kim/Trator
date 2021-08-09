@@ -6,6 +6,12 @@
 /* Screens */
 @import "screens/nav.css";
 @import "screens/signup.css";
+<<<<<<< HEAD
+@import "screens/qna_list.css";
+/* @import "screens/search.css";
+@import "screens/more.css";
+@import "screens/chat.css"; */
+=======
 @import "screens/align.css";
 @import "screens/index.css";
 @import "screens/login.css";
@@ -13,6 +19,7 @@
 @import "screens/guide_detail.css";
 @import "screens/guide_new.css";
 
+>>>>>>> eac3e467a6198eb42a28a19ffb62a0e528bf51fb
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
