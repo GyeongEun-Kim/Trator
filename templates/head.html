@@ -6,10 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trator</title>
   <!-- PAGE ICON -->
-  <link rel="shortcut icon" type="image/x-icon" href="image/main_icon.png" />
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="{%static 'images/main_icon.png'%}"
+  />
   <!-- BOOTSTRAP LINK -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  
+
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -20,14 +24,14 @@
     @font-face {
       font-family: "HeyAugust";
       src: local("HeyAugust"),
-        url("../static/fonts/HeyAugust.ttf") format("opentype");
+        url("/static/fonts/HeyAugust.ttf") format("opentype");
     }
   </style>
   <!-- DEFAULT CSS LINK -->
   <link rel="stylesheet" type="text/css" href="{%static 'css/styles.css'%}" />
-  <link
+  <!-- <link
     href="{% static 'fonts/HeyAugust.ttf' %}"
     rel="stylesheet"
     media="screen"
-  />
+  /> -->
 </head>
