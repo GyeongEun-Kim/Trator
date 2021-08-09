@@ -1,34 +1,39 @@
 {% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
     {% block content %}
+    <div class="trator_guide" >
+        트래토 가이드
+    </div>
     {% if content.guide_detail is not None %}
-        <h1>제목 : {{content.guide_detail.title}}</h1>
+        <h1 class="g_detail_title"> {{content.guide_detail.title}}</h1> <br>
+    
+        <h2 class="g_detail_writer">작성자 : {{content.guide_detail.writer}}</h2>
+        
+        <h2 class="g_detail_time">작성 시간 : {{content.guide_detail.date}}</h2>
+        
+        
+        <h2 class="g_detail_content"> {{content.guide_detail.content}} </h2>
+
         <br>
-        <h2>작성자 : {{content.guide_detail.writer}}</h2>
-        <br>
-        <h2>작성 시간 : {{content.guide_detail.date}}</h2>
-        <br>
-        <h2>가격 : {{content.guide_detail.price}}</h2>
-        <h2>내용 : {{content.guide_detail.content}} </h2>
+        <h2 class="g_detail_price">가격 : {{content.guide_detail.price}}</h2> <br>
+        <h2 class="g_detail_spots">가이드 추천 장소 : {{content.map_title}}</h2>
+
         {% if content.guide_detail.image %}
-        <image src ="{{content.guide_detail.image.url}}" height="600"></image>
+        <image src ="{{content.guide_detail.image.url}}"  class="g_image"></image>
         {% endif %}
-        <br>
-        <h2>가이드 추천 장소 : {{content.map_title}}</h2>
         
         
-        <div id="map" style="width:500px;height:400px;"></div>
+        {% if content.guide_detail.writer == request.user %}
+        <div class ="g_delete_update">
+        <a href="{% url 'guide_delete' content.guide_detail.id %}" >글 삭제하기</a>
+
+        <a href ="{% url 'guide_update' content.guide_detail.id %}">글 수정하기</a>
+        {% else %}
+        <a href ="{% url 'kakaopay_index' %}">결제하러 이동</a>
+        {% endif %}
+        {% endif %}
+    </div>
+        <div id="map" ></div>
 
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6c555277e504f8c39203764bdea1d03"></script>
         <script>
@@ -111,17 +116,8 @@
         </script>
                 
        
-       <a href ="{% url 'kakaopay_index' %}">결제하러 이동</a>
+       
 
 
-        {% if content.guide_detail.writer == request.user %}
-        <a href="{% url 'guide_delete' content.guide_detail.id %}">글 삭제하기</a>
-
-        <a href ="{% url 'guide_update' content.guide_detail.id %}">글 수정하기</a>
-        {% endif %}
-    {% endif %}
+      
     {% endblock %}
-
-    
-</body>
-</html>
