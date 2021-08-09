@@ -14,6 +14,7 @@
 /* Screens */
 @import "screens/nav.css";
 @import "screens/signup.css";
+@import "screens/qna_list.css";
 /* @import "screens/search.css";
 @import "screens/more.css";
 @import "screens/chat.css"; */
