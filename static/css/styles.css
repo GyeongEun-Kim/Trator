@@ -13,6 +13,9 @@
 @import "screens/align.css";
 @import "screens/index.css";
 @import "screens/login.css";
+@import "screens/guide_list.css";
+@import "screens/guide_detail.css";
+@import "screens/guide_new.css";
 
 
 body {
