@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
 
+{% extends 'base.html' %}
     {% block content %}
     <form action="{% url 'guide_new' %}" method='POST' enctype ="multipart/form-data">
         {% csrf_token %}
@@ -19,30 +19,34 @@
             <option value="오세아니아">오세아니아</option>
         </select>
     </div>
-        <br>
-
-        <textarea cols="50" rows="20" id="content" name="content" class="content"></textarea>
-        <br>
-        <div class="price">
-        <label for="price">가격</label>
-        <input type="number" id="price" name="price">
-    </div>
-        <br>
-
-        <label for="image">이미지 첨부</label>
-        <input type="file" id="image" name="image">
+    
+        
         <br>
         
-        <button type="submit">글 올리기</button>
+        
+
+        <textarea cols="120 " rows="20" id="content" name="content" class="content" ></textarea>
+        
+        
+        
+        <div class="price" style="position: relative; top:10px; display:inline">
+            <label for="price">가격</label>
+            <input type="number" id="price" name="price">
+        </div>
+
+        <div class="image" style="position: relative; top:10px; display:inline;">
+            <label for="image">이미지 첨부</label>
+            <input type="file" id="image" name="image" style=" width:250px">
+        </div>
+        <h1 class="info">장소검색이 끝나면 오른쪽 버튼을 눌러주세요</h1>
+        
+            <button type="submit" class="submit" style="position: relative; top:750px; display:inline; left:200px">글 올리기</button>
+        
+        </div>
         </form>
         
-        <button id="map_data" type="submit"z>장소 검색 끝</button>
-
-
-        <br>
-
         <div class="map_wrap">
-            <div id="map" style="width:500px;height:500px;position:relative;overflow:hidden;"></div>
+            <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden; top:10px;left:10px;"></div>
         
             <div id="menu_wrap" class="bg_white">
                 <div class="option">
@@ -58,7 +62,16 @@
                 <div id="pagination"></div>
             </div>
         </div>
+        
+        
+        <button id="map_data" type="submit" style="position: relative; bottom:705px; left:870px">장소 검색 끝</button>
+        
+        
 
+        <br>
+        <br>
+
+        
         
 
         

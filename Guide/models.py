@@ -8,7 +8,7 @@ class Guide (models.Model) :
     content = models.TextField(blank=False)
     # writer = models.CharField(max_length=10)
     writer = models.ForeignKey(CustomUser,on_delete=models.CASCADE, null=True, related_name="author")
-    date = models.DateField()
+    date = models.DateTimeField()
     location = models.CharField(max_length=10)
     image = models.ImageField( blank=True, null=True, upload_to="guide/")
     price =models.IntegerField()

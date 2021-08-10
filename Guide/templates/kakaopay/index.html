@@ -20,10 +20,10 @@
 <body>
 {% block content %}
 <div class="row mt-5">
-    <h1 class="col-12 text-center my-5">KAKAO PAY</h1>
+    <h1 class="col-12 text-center my-5"></h1>
     <form method="post" class="col-12 text-center" action="kakaopay_process">
       {% csrf_token %}
-      <button type="submit" id="kakaopay_btn"><img src="{% static '카카오페이.png' %}" alt=""></button>
+      <button type="submit" id="kakaopay_btn" style="border: none;"><img src="{% static '카카오페이.png' %}" alt=""></button>
     </form>
   </div>
   {% endblock %}

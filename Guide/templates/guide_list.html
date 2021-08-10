@@ -1,58 +1,129 @@
 {% extends 'base.html' %}
 
     {% block content %}
-    <div class="wrap-lists">
-    <table class="list-table">
+    
+    
         <div class="trator_guide" >
             트래토 가이드
         </div>
+
+        <div class="guide_head">
+            <form action="{%url 'guide_search_by_location' %}" method="GET">
+            <select class="guide_search_select" name="location">
+                <option value="국내">국내</option>
+                <option value="북미">북미</option>
+                <option value="남미">남미</option>
+                <option value="유럽">유럽</option>
+                <option value="아시아">아시아</option>
+                <option value="오세아니아">오세아니아</option>
+            </select>
+            <button type="submit" class="guide_search_submit"><i class="fas fa-search"></i></button>
+            </form>
         {% if request.user.is_authenticated %}
-        <a class="new_guide" href="{% url 'guide_new' %}" >새 글 작성하기</a>
+            <a class="guide_head_new" href="{% url 'guide_new' %}" >새 글 작성하기<i class="fas fa-edit"></i></a>
         {% endif %}
-        <thead>
-            <tr class = "text-center">
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성 시간</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% if guide_list %}
-            {% for list in guide_list %}
-            <div >
-                
-            <tr class="list_content">
-                <td><a href="{% url 'guide_detail' list.id %}">
-                    {{ list.title|truncatechars:30 }}</a></td>
-                <td>{{ list.writer }}</td>
-                <td>{{ list.date|date:'Y. m. d' }}</td>
-            </tr>
+    </div>
+    <br>
+        {% if guide_list %}
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr class = "text-center">
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for list in guide_list %}
+                <tr class="list_content">
+                    <td>{{list.id}}</td>
+                    <td><a href="{% url 'guide_detail' list.id %}" >    
+                        {{ list.title|truncatechars:30 }}</a></td>
+                    <td >{{ list.writer }}</td>
+                    <td>{{ list.date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+
+            <!-- 이거도 부트스트랩 -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    {%if guide_list.has_previous%}
+                        <a class="page-link" href="?page=1" tabindex="-1" aria-disabled="true">
+                            <i class="fas fa-chevron-left fa-xs"></i>
+                            <i class="fas fa-chevron-left fa-xs"></i>
+                        </a>
+                    {%else%}
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <i class="fas fa-chevron-left fa-xs"></i>
+                            <i class="fas fa-chevron-left fa-xs"></i>
+                        </a>
+                    {%endif%}
+                </li>
+                <li class="page-item">
+                    {%if guide_list.has_previous%}
+                        <a class="page-link" href="?page={{guide_list.previous_page_number}}">
+                            <i class="fas fa-chevron-left fa-xs"></i>
+                        </a>
+                    {%else%}
+                        <a class="page-link" href="#">
+                            <i class="fas fa-chevron-left fa-xs"></i>
+                        </a>
+                    {%endif%}
+                </li>
+                <li class="page-item">
+                <a class="page-link" href="#">
+                    {{guide_list.number}}
+                    </a>
+                </li>
+                <li class="page-item">
+                {%if guide_list.has_next%}
+                    <a class="page-link" href="?page={{guide_list.next_page_number}}">
+                        <i class="fas fa-chevron-right fa-xs"></i>
+                    </a>
+                {%else%}
+                    <a class="page-link" href="#">
+                        <i class="fas fa-chevron-right fa-xs"></i>
+                    </a>
+                {%endif%}
+                </li>
+                <li class="page-item">
+                {%if guide_list.has_next%}
+                    <a class="page-link" href="?page={{guide_list.paginator.num_pages}}">
+                        <i class="fas fa-chevron-right fa-xs"></i>
+                        <i class="fas fa-chevron-right fa-xs"></i>
+                    </a>
+                {%else%}
+                    <a class="page-link" href="#">
+                        <i class="fas fa-chevron-right fa-xs"></i>
+                        <i class="fas fa-chevron-right fa-xs"></i>
+                    </a>
+                {%endif%}
+                </li>
+            </ul>
+        </nav>
             
-            {% endfor %}
+            
             {% else %}
-            <tr class ="text-center">
-                <td colspan="5">
-                    작성된 게시글이 없습니다.
-                </td>
-            </tr>
+            <div class="guide_empty">
+                <i class="far fa-sad-tear"></i>
+                <span>게시글이 없습니다...</span>
+            </div>
         </div>
             {% endif %}
-        </tbody>
-    </table>
+        
+    
 
     <br>
     
 
-    <form action="{%url 'guide_search_by_location' %}" method="GET" class="guide_search">
-        <select id="location" name="location">
-            <option value="국내">국내</option>
-            <option value="북미">북미</option>
-            <option value="남미">남미</option>
-            <option value="유럽">유럽</option>
-            <option value="아시아">아시아</option>
-            <option value="오세아니아">오세아니아</option>
-        </select>
-       <button type="submit">검색하기</button>
-    </form>
+    
 </div>
+
+<script src="https://kit.fontawesome.com/2eb21cad7a.js" crossorigin="anonymous">
+</script>
+
     {% endblock %}

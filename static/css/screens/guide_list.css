@@ -8,7 +8,67 @@
 
 
 
+.guide_title{
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
 
-.new_guide {
+.guide_head{
+    padding: 0.4rem 0rem;
+    display: flex;
+    justify-content:space-between;
+}
+
+.guide_search_select{
+    font-size: 1rem;
+    font-weight: 400;
+    border-color: aquamarine;
+    opacity: 0.7;
+    border-radius: 10%;
+}
+
+.guide_head_new{
+    padding: 0.4rem;
+    border-radius: 10px;
+    color: cornsilk;
+    background-color: #52aace;
+}
+
+.new_guide:hover{
+    background-color: cornsilk;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.guide_empty{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+    padding: 3rem;
+    
+}
+.guide_empty i{
+    font-size: 6rem;
+}
+
+.guide_empty span{
+    padding-top: 1rem;
+    font-size: 1.4rem;
+}
+
+.guide{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, .3);
+    padding: 0.8rem;
+}
+.guide_line span{
+    display: block;
+}
+
+.list_content {
     text-align: center;
 }
