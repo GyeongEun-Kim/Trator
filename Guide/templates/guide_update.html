@@ -19,19 +19,23 @@
                     </select>
                     <br>
 
-                    <textarea cols="50" rows="20" id="content" name="content">{{guide_update.content}}</textarea>
+                    <textarea cols="120" rows="20" id="content" name="content">{{guide_update.content}}</textarea>
                     <br>
 
+                   
+                        <div class="price">
                     <label for="price">가격</label>
                     <input type="number" id="price" name="price" value="{{guide_update.price}}">
-                    <br>
-
+                    
+                    </div>
+                    <div class="image">
                     <label for="image">이미지 첨부</label>
-                    <input type="file" id="image" name="image" >
+                    <input type="file" style="width: 300px" id="image" name="image" >
+                </div>
                     
                     <br>
 
-                    <button type="submit">글 수정하기</button>
+                    <button type="submit" style="position:relative; left:800px; bottom:50px;">글 수정하기</button>
                 </div>
             {% endif %}
     </form>
