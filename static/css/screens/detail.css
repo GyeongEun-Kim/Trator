@@ -1,0 +1,88 @@
+.detail_profile_align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+  flex-direction: column;
+}
+
+.detail_profile_username_origin {
+  font-size: 2rem;
+  color: white;
+  background-color: #52aace;
+  border: 1px solid #52aace;
+  border-radius: 1rem;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.detail_profile_username {
+  font-size: 1rem;
+  border-bottom: 1px solid #52aace;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.detail_question_align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  flex-direction: column;
+  border: 1px solid #52aace;
+  border-radius: 1rem;
+  padding: 10px;
+  margin-right: 1rem;
+}
+.detail_guide_align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  flex-direction: column;
+  border: 1px solid #52aace;
+  border-radius: 1rem;
+  padding: 10px;
+  margin-left: 1rem;
+}
+
+.detail_user_qna {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.detail_question_box_design {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  justify-content: space-between;
+  width: 40rem;
+  height: auto;
+  background-color: #fffe00;
+  opacity: 0.8;
+  border-radius: 2rem;
+  padding: 0 1rem;
+}
+
+.detail_guide_box_design {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  justify-content: space-between;
+  width: 40rem;
+  height: auto;
+  background-color: #fffe00;
+  opacity: 0.8;
+  border-radius: 2rem;
+  padding: 0 1rem;
+}
+
+.detail_question_detail {
+  display: flex;
+  justify-content: space-between;
+}
