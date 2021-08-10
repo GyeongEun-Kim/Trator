@@ -7,19 +7,25 @@
   </div>
   <div class="second_home_frame">
     <div class="home_frame">
-      <img class="home_frame_div1" src="/static/images/div1.jpg" alt="" />
+      <a href="{%url 'qna_list'%}"
+        ><img class="home_frame_div1" src="/static/images/div1.jpg" alt=""
+      /></a>
       <!-- <div >1</div> -->
       <div class="home_frame_div2">
-        <img
-          class="home_frame_div2_div1"
-          src="/static/images/div2-1.jpg"
-          alt=""
-        />
-        <img
-          class="home_frame_div2_div2"
-          src="/static/images/div2-2.jpg"
-          alt=""
-        />
+        <a href="{%url 'qna_list'%}">
+          <img
+            class="home_frame_div2_div1"
+            src="/static/images/div2-1.jpg"
+            alt=""
+          />
+        </a>
+        <a href="{% url 'guide_list' %}">
+          <img
+            class="home_frame_div2_div2"
+            src="/static/images/div2-2.jpg"
+            alt=""
+          />
+        </a>
       </div>
     </div>
   </div>

@@ -18,27 +18,26 @@
 .form_align_center {
   font-size: 5rem;
   text-align: center;
-  max-width: 500px;
   margin: 4rem auto;
 }
 
 .header_align {
   border-radius: 1rem;
-  margin: 2rem;
+  margin: 2rem auto;
+  margin-top: 1rem;
+  position: relative;
 }
 
 .section_align {
-  height: 45rem;
+  position: relative;
+  border-bottom: 1px solid #47a3bf;
 }
 
 .footer_align {
-  margin: 3rem;
+  margin: 1rem auto;
+  position: relative;
 }
 
 .login_align {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
 }
