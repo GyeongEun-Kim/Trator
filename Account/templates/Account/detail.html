@@ -1,56 +1,66 @@
-{%extends 'base.html' %} {% block content %} {% if target_user.user == user %}
+{%extends 'base.html' %} {% block content %}
+<!-- 커밋확인 -->
 <div>
   <div>
-    <div>
-      <a href="{% url 'Account:update' pk=target_user.user.pk%}">정보변경</a>
-      <a href="{% url 'Account:delete' pk=target_user.user.pk%}">회원탈퇴</a>
+    <!-- 프로필 -->
+    <div class="detail_profile_align">
+      <div>
+        <h2 class="detail_profile_username_origin">{{user.username}}</h2>
+      </div>
+      <div>
+        <a href="{% url 'Account:update' pk=target_user.user.pk%}">정보변경</a>
+        <a href="{% url 'Account:delete' pk=target_user.user.pk%}">회원탈퇴</a>
+      </div>
     </div>
-    <div>
-      <h2 style="font-size: 2rem">{{target_user.username}}</h2>
-    </div>
-    <div class="question">
-      <h2>나의 질문</h2>
-      {%if target_user.question %} {%for question in target_user.question %}
-      <a href="{% url 'q_detail' question.id %}"
-        >{{question.title}}----{{question.answer_set.count}}개의 답변</a
-      ><br />
-      {%endfor%} {% else %}
-      <h1>없습니다</h1>
-      {% endif %}
-    </div>
-    <br />
-    <div class="answer">
-      <h2>나의 답변</h2>
-      {%if target_user.answer %} {%for answer in target_user.answer %}
-      <a href="{% url 'a_detail' answer.id %}"
-        >{{answer.question.title}}에 대한 답변 {%if answer.like %}
-        <span>(채택됨)</span>
-        {% else %}
-        <span>(미채택)</span>
-        {% endif %} </a
-      ><br />
-      {%endfor%} {% else %}
-      <h1>없습니다</h1>
-      {% endif %}
-    </div>
-    <br />
-    <div class="guide">
-      <h2>나의 가이드</h2>
-      {%if target_user.guide %} {%for guide in target_user.guide %}
-      <a href="{% url 'guide_detail' guide.id %}"
-        >{{guide.title|truncatechars:30}}</a
-      ><br />
-      {%endfor%} {% else %}
-      <h1>없습니다</h1>
-      {% endif %}
+    <!-- 질문 -->
+    <div class="detail_user_qna">
+      <div class="detail_question_align">
+        <h2 class="detail_profile_username">나의 질문</h2>
+        <div class="detail_question_box_design">
+          {%if target_user.question %} {%for question in target_user.question %}
+          <div class="detail_question_detail">
+            <a href="{% url 'q_detail' question.id %}"
+              >제목 : {{question.title}}</a
+            >
+            <a href="{% url 'q_detail' question.id %}"
+              >{{question.answer_set.count}}개의 답변</a
+            >
+          </div>
+
+          {%endfor%} {% else %}
+          <h1>없습니다</h1>
+          {% endif %}
+        </div>
+        <h2 class="detail_profile_username">나의 답변</h2>
+
+        <div class="detail_question_box_design">
+          {%if target_user.answer %} {%for answer in target_user.answer %}
+          <a href="{% url 'a_detail' answer.id %}"
+            >{{answer.question.title}}에 대한 답변 {%if answer.like %}
+            <span>(채택됨)</span>
+            {% else %}
+            <span>(미채택)</span>
+            {% endif %}
+          </a>
+          {%endfor%} {% else %}
+          <h1>게시한 답변이 없습니다</h1>
+          {% endif %}
+        </div>
+      </div>
+      <div class="detail_guide_align">
+        <h2 class="detail_profile_username">나의 가이드</h2>
+
+        <div class="detail_guide_box_design">
+          {%if target_user.guide %} {%for guide in target_user.guide %}
+          <a href="{% url 'guide_detail' guide.id %}"
+            >제목 : {{guide.title|truncatechars:30}}</a
+          >
+          {%endfor%} {% else %}
+          <h1>등록한 가이드가 없습니다</h1>
+          {% endif %}
+        </div>
+      </div>
     </div>
   </div>
 </div>
-{% else %}
-<div>
-  <div>
-    <!-- <p>{{user.date_joined}}</p> -->
-    <h2>접근 권한이 없습니다.</h2>
-  </div>
-</div>
-{% endif %} {% endblock %}
+{% endblock %}

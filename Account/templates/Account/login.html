@@ -7,7 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trator</title>
     <!-- PAGE ICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="image/main_icon.png" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{%static 'images/main_icon.png'%}"
+    />
     <!-- BOOTSTRAP LINK -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -19,7 +23,7 @@
       @font-face {
         font-family: "HeyAugust";
         src: local("HeyAugust"),
-          url("../static/fonts/HeyAugust.ttf") format("opentype");
+          url("/static/fonts/HeyAugust.ttf") format("opentype");
       }
     </style>
     <!-- DEFAULT CSS LINK -->
@@ -31,16 +35,35 @@
     />
   </head>
 
-  <body style="height: 55rem; display: flex; justify-content: normal">
-    <div class="login_align">
-      <div class="main_head">
-        <a>Trator</a>
-      </div>
-      <div>
-        <form action="{% url 'Account:login'%}" method="post">
-          {%csrf_token%} {%bootstrap_form form%}
-          <button type="submit">로그인</button>
-        </form>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      display: grid;
+      place-content: center;
+      min-height: 100vh;
+    "
+  >
+    <div
+      style="
+        border: 1px solid #52aace;
+        border-radius: 1rem;
+        padding: 1.5rem 1rem;
+      "
+    >
+      <div class="login_align">
+        <div class="main_head">
+          <a>Trator</a>
+        </div>
+        <div>
+          <form action="{% url 'Account:login'%}" method="post">
+            {%csrf_token%} {%bootstrap_form form%}
+            <button type="submit">로그인</button>
+          </form>
+          <div style="margin: 1rem; font-size: 0.9rem">
+            <a href="{% url 'Account:signup'%}">회원가입</a>
+          </div>
+        </div>
       </div>
     </div>
   </body>
