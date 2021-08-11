@@ -3,6 +3,9 @@
     {% block content %}
     <form action="{% url 'guide_new' %}" method='POST' enctype ="multipart/form-data">
         {% csrf_token %}
+        <div class ="new_guide_title">새 가이드 작성</div>
+        <br>
+        <div class ="new_wrap">
         <div class ="title">
         <label for="title">제목: </label>
         <input type="text" id="title" name="title" >
@@ -25,24 +28,25 @@
         
         
 
-        <textarea cols="120 " rows="20" id="content" name="content" class="content" ></textarea>
+        <textarea cols="100 " rows="20" id="content" name="content" class="content" ></textarea>
         
         
         
-        <div class="price" style="position: relative; top:10px; display:inline">
+        <div class="price" style="position: relative; display:inline">
             <label for="price">가격</label>
             <input type="number" id="price" name="price">
         </div>
 
-        <div class="image" style="position: relative; top:10px; display:inline;">
-            <label for="image">이미지 첨부</label>
-            <input type="file" id="image" name="image" style=" width:250px">
+        <div class="image" style="position: relative;  display:inline;">
+            <label for="image"><i class="far fa-images img_icon">:</i></label>
+            <input type="file" id="image" name="image" style=" width:250px; position: relative; bottom:5px;">
         </div>
         <h1 class="info">장소검색이 끝나면 오른쪽 버튼을 눌러주세요</h1>
         
-            <button type="submit" class="submit" style="position: relative; top:750px; display:inline; left:200px">글 올리기</button>
+            <button type="submit" class="submit" style="position: relative; top:630px; display:inline; left:100px;">글 올리기</button>
         
         </div>
+        
         </form>
         
         <div class="map_wrap">
@@ -63,18 +67,19 @@
             </div>
         </div>
         
+        <br><br><br><br><br><br>
+        <button id="map_data" type="submit" style="position: relative; bottom:625px; left:770px">장소 검색 끝</button>
         
-        <button id="map_data" type="submit" style="position: relative; bottom:705px; left:870px">장소 검색 끝</button>
         
-        
-
+    </div>
         <br>
         <br>
 
         
         
 
-        
+        <script src="https://kit.fontawesome.com/2eb21cad7a.js" crossorigin="anonymous">
+        </script>
 
         
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6c555277e504f8c39203764bdea1d03&libraries=services"></script>

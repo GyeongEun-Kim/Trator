@@ -1,3 +1,4 @@
+from django.core import paginator
 from django.db.models.query import QuerySet
 from django.http import request
 from django.shortcuts import get_object_or_404 , redirect, render
@@ -10,7 +11,10 @@ from django.core.paginator import Paginator
 
 
 def guide_list (request) :
-    lists = Guide.objects.all()
+    lists = Guide.objects.all().order_by('-id')
+    paginator =Paginator(lists,5 )
+    page = request.GET.get('page')
+    lists = paginator.get_page(page)
     return render(request,'guide_list.html',{'guide_list':lists})
 
 def guide_detail(request,id) :

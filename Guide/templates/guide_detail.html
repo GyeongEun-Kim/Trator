@@ -7,8 +7,9 @@
     <div class ="detail_wrap">
         {% if content.guide_detail is not None %}
             <h1 class="g_detail_title"> {{content.guide_detail.title}}</h1> <br>
-            <h2 class="g_detail_writer">작성자 : {{content.guide_detail.writer}}</h2>
-            <h2 class="g_detail_time">작성 시간 : {{content.guide_detail.date}}</h2>
+            <h2 class="g_detail_writer"><i class="far fa-user"></i> {{content.guide_detail.writer}}</h2>
+            <h2 class="g_detail_time"><i class="far fa-clock"></i> {{content.guide_detail.date}}</h2>
+            <hr style="color: #52aace;">
             <h2 class="g_detail_content"> {{content.guide_detail.content}} </h2>
             <br>
             <h2 class="g_detail_price">가격 : {{content.guide_detail.price}}</h2> <br>
@@ -43,7 +44,7 @@
 
     
         
-      
+        <script src="https://kit.fontawesome.com/2eb21cad7a.js" crossorigin="anonymous"></script>
     
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6c555277e504f8c39203764bdea1d03"></script>
         <script>
@@ -127,7 +128,7 @@
                 
        
        
-
+    
 
       
     {% endblock %}

@@ -17,17 +17,16 @@
     
     display: inline;
     position: relative;
-    left: 70%;
+   
     
 
 }
 
 .g_detail_time {
     /* font-size: 30px; */
-    
     display: inline;
     position: relative;
-    left: 70%;
+    left : 37rem;
 }
 
 .g_detail_content {
@@ -52,9 +51,10 @@
     
 }
 #map {
-    height:400px;  width: 450px;
-    left: 500px;
-    bottom: 400px;
+    height:500px;  width: 100%;
+    position: relative;
+
+    
    
 }
 
@@ -65,7 +65,7 @@
     border-radius: 10px;
     color: cornsilk;
     background-color: #52aace;
-    bottom: 400px;
+    
 
 }
     
@@ -81,11 +81,12 @@
     width : 15rem;
 }
 
-/* .detail_wrap {
+.detail_wrap {
     border: 1px solid;
     border-color: #52aace;
     border-radius: 10px;
-} */
+    padding:30px;
+}
 
     
     
