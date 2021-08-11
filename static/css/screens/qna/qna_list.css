@@ -1,5 +1,8 @@
+.qna_body{
+    margin: 0rem 3rem;
+}
 .qna_title{
-    padding: 1rem;
+    padding: 1rem 0rem;
     font-size: 2rem;
     font-weight: 600;
     text-align: center;
@@ -23,6 +26,7 @@
     padding: 0.4rem;
     border-radius: 10px;
     color: cornsilk;
+    font-weight: 600;
     background-color: #52aace;
 }
 
@@ -57,4 +61,8 @@
 }
 .question_line span{
     display: block;
+}
+
+.page_margin{
+    margin: 1rem 0rem;
 }

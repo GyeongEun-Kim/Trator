@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- 메인 SECTION -->
+<div class="qna_body">
+    <p class="qna_title">여행 질문</p>
+    <div class="question_header">
+        <div class="qna_modify">
+            <a href="{% url 'q_detail' question.id %}"><i class="fas fa-arrow-left"></i>질문 보기</a>
+        </div>
+    </div>
+    <div>
+        {% for answer in question.answer_set.all %}
+            {% if question.vote %}
+                {%if not answer.like %}
+                    <div class="qna_detail answer_detail">
+                        <div class="qna_data">
+                            <span><i class="far fa-user"></i>{{answer.writer}}</span>
+                            <span><i class="far fa-clock"></i>{{answer.date}}</span>
+                        </div>
+                            <p class="q_detail_content">{{answer.content}}</p>
+                        {% if answer.image %}
+                            <p><img class="q_img" src="{{answer.image.url}}" height="300"></p>
+                        {% endif %}
+                    </div>
+                {%endif%}
+            {%endif%}
+        {%endfor%}
+    </div>
+</div>
+
+{% endblock%}

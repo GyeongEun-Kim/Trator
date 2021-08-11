@@ -2,12 +2,21 @@
 {% extends 'base.html' %} {% block content %}
 
 <!-- 메인 SECTION -->
-<form action="{%url 'q_update' question.id%}" method="POST" enctype ="multipart/form-data">
-    {%csrf_token%}
-    <p>제목: <input type="text" name="title" value="{{question.title}}"></p>
-    <p>내용: <textarea name="content" id="" cols="30" rows="10">{{question.content}}</textarea></p>
-    <p>이미지 첨부 <input type="file" id="image" name="image"></p>
-    <input type="submit" value="수정하기">
-</form>
-
+<div class="qna_body">
+    <div class="qna_detail">
+        <p class="qna_title">질문수정</p>
+        <form class="qna_new" action="{%url 'q_update' question.id%}" method="POST" enctype ="multipart/form-data">
+            {%csrf_token%}
+            <div class="qna_new_question">
+                <span>제목: <input class="qna_new_title" type="text" name="title" value="{{question.title}}"></span>
+            </div>
+            <span class="qna_new_content">내용: <textarea name="content" id="" cols="30" rows="10">{{question.content}}</textarea></span>
+            <div class="qna_new_question">
+                <span><i class="far fa-images img_icon">:</i><input class="qna_new_image" type="file" id="image" name="image"></span>
+                <input class="qna_new_submit" type="submit" value="수정하기">
+            </div>
+            
+        </form>
+    </div>
+</div>
 {% endblock%}

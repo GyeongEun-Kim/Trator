@@ -1,44 +1,96 @@
 {% extends 'base.html' %} {% block content %}
 
 <!-- 메인 SECTION -->
-<div>
-    <div>
-        <h1>{{question.title}}</h1>
-        <span>{{question.location}}</span>
-        <span>No.{{question.id}}</span>            
+<div class="qna_body">
+    <p class="qna_title">여행 질문</p>
+    <div class="question_header">
+        <div class="qna_modify">
+            <a href="{% url 'qna_list' %}"><i class="fas fa-arrow-left"></i>이전화면</a>
+        </div>
+        {% if question.writer == user.username %}
+            {% if not question.vote %}
+            <div class="qna_modify">
+                <a href="{% url 'q_edit' question.id %}">수정하기<i class="far fa-edit"></i></a>
+                <a href="{% url 'q_delete' question.id %}">지우기<i class="far fa-trash-alt"></i></a>
+            </div>
+            {%endif%}
+        {%endif%}
+    </div>
+    <div class="qna_detail question_detail">
+        <h1 class="q_detail_title">{{question.title}}</h1>
+        <div class="qna_data">
+            <span class="q_detail_writer"><i class="far fa-user"></i>{{question.writer}}</span>
+            <span class="q_detail_time"><i class="far fa-clock"></i>{{question.date}}</span>      
+        </div>
+        <div>
+            <span class="q_detail_content">{{question.content}}</span>
+            {% if question.image %}
+            <img class="q_img" src="{{question.image.url}}" height="300">
+            {% endif %} 
+        </div>     
+    </div>
+    <div class="answer_head qna_modify">
+        <span>{{question.answer_set.count}}개의 답변</span>
+        {% if user.membership %}
+            {% if user.username != question.writer %}
+                {%if not question.vote%}
+                    <a href="{%url 'a_new' question.id %}">답변하기</a>
+                {%endif%}
+            {%endif%}
+        {%endif%}
     </div>
     <div>
-        <span>{{question.writer}}</span>
-        <span>{{question.date}}</span>
+        {% for answer in question.answer_set.all %}
+            {% if question.vote %}
+                {%if answer.like %}
+                    <p class="answer_is_voted"><i class="fas fa-check-circle"></i>채택되었습니다.</p>
+                    <div class="qna_detail answer_detail">
+                        <div class="qna_data">
+                            <span><i class="far fa-user"></i>{{answer.writer}}</span>
+                            <span><i class="far fa-clock"></i>{{answer.date}}</span>
+                        </div>
+                            <p class="q_detail_content">{{answer.content}}</p>
+                        {% if answer.image %}
+                            <p><img class="q_img" src="{{answer.image.url}}" height="300"></p>
+                        {% endif %}
+                    </div>
+                    {%if question.answer_set.count > 1 %}
+                        <div class="qna_modify another_answer">
+                            <a href="{% url 'a_not_adopted' question.id %}">다른 질문 보기</a>
+                        </div>
+                    {%endif%}
+                {%endif%}
+            {%else%}
+                <div class="qna_detail answer_detail">
+                    <div class="qna_data">
+                        <span><i class="far fa-user"></i>{{answer.writer}}</span>
+                        <span><i class="far fa-clock"></i>{{answer.date}}</span>
+                    </div>
+                        <p class="q_detail_content">{{answer.content}}</p>
+                    {% if answer.image %}
+                        <p><img class="q_img" src="{{answer.image.url}}" height="300"></p>
+                    {% endif %}
+                    <div class="answer_edit">
+                        {%if answer.writer == user.username %}
+                            {%if not question.vote %}
+                                <div class="qna_modify ">
+                                    <a href="{% url 'a_edit' answer.id %}">답변 수정</a>
+                                    <a href="{% url 'a_delete' answer.id %}">답변 삭제</a>
+                                </div>
+                            {%endif%}
+                        {%endif%}
+                        {% if question.writer == user.username %}
+                            {%if not question.vote %}
+                                <div class="qna_modify">
+                                    <a href="{% url 'a_adopt' answer.id %}">채택하기</a>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            {%endif%}
+        {%endfor%}
     </div>
-    <div>
-        <span>{{question.content}}</span>
-        {% if question.image %}
-        <img src="{{question.image.url}}" height="600">
-        {% endif %}
-        
-    </div>     
-</div>
-{% if question.writer == user.username %}
-    <a href="{% url 'q_edit' question.id %}">수정하기</a>
-    <a href="{% url 'q_delete' question.id %}">질문 삭제</a>
-{%endif%}
-<a href="{% url 'qna_list' %}">첫 페이지</a>
-<br>
-<br>
-<br>
-<p>{{question.answer_set.count}}개의 답변</p>
-<div>
-    <ul>
-    {% for answer in question.answer_set.all %}
-        <a href="{% url 'a_detail' answer.id %}">{{answer.writer}}님의 답변입니다.</a><br>
-    {%endfor%}
-    </ul>
 </div>
 
-{% if user.membership %}
-    {% if user.username != question.writer %}
-        <a href="{%url 'a_new' question.id %}">답변하기</a>
-    {%endif%}
-{%endif%}
 {% endblock%}

@@ -1,25 +1,29 @@
 {% extends 'base.html' %} {% block content %}
-<div>
-    <div>
-        <h1>{{question.title}}</h1> 
-        <span>{{question.location}}</span>
-        <span>No.{{question.id}}</span>            
+<div class="qna_body">
+    <p class="qna_title">여행질문</p>
+    <div class="qna_detail">
+        <h1 class="q_detail_title">{{question.title}}</h1>
+        <div class="qna_data">
+            <span class="q_detail_writer"><i class="far fa-user"></i>{{question.writer}}</span>
+            <span class="q_detail_time"><i class="far fa-clock"></i>{{question.date}}</span>      
+        </div>
+        <div>
+            <span class="q_detail_content">{{question.content}}</span>
+            {% if question.image %}
+            <img class="q_img" src="{{question.image.url}}" height="300">
+            {% endif %} 
+        </div> 
     </div>
-    <div>
-        <span>{{question.writer}}</span>
-        <span>{{question.date}}</span>
+    <div class="qna_detail" >
+        <p class="qna_title">답변하기</p>
+        <form class="qna_new" action="{%url 'a_create' question.id%}" method="POST" enctype ="multipart/form-data">
+            {%csrf_token%}
+            <span class="qna_new_content">내용:<textarea class="qna_new_content" name="content" placeholder="내용을 입력하세요."></textarea></span>
+            <div class="qna_new_question">
+                <span><i class="far fa-images img_icon">:</i><input class="qna_new_image" type="file" id="image" name="image"></span>
+                <input class="qna_new_submit" type="submit" value="답변하기">
+            </div>
+        </form>
     </div>
-    <div>
-        <span>{{question.content}}</span>
-        <img src="{{question.image}}">
-    </div>     
 </div>
-<br><br><br><br>
-<p>답변하기</p>
-<form action="{%url 'a_create' question.id%}" method="POST" enctype ="multipart/form-data">
-    {%csrf_token%}
-    <p>내용: <textarea name="content" id="" cols="30" rows="10" placeholder="내용을 입력하세요."></textarea></p>
-    <p>이미지 첨부 <input type="file" id="image" name="image"></p>
-    <input type="submit" value="답변하기">
-</form>
 {% endblock%}

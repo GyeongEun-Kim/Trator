@@ -4,11 +4,15 @@ from .models import Question, Answer
 from django.utils import timezone
 from django.contrib.auth.models import User
 from Account.models import CustomUser
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 def question_list(request):
-    question_list = Question.objects.all()
+    question_list = Question.objects.all().order_by('-id')
+    paginator = Paginator(question_list, 5)
+    page = request.GET.get('page')
+    question_list = paginator.get_page(page)
     context = {'question_list': question_list}
     return render(request, 'qna_list.html', context)
 
@@ -67,10 +71,6 @@ def answer_create(request, id):
 
     return redirect('q_detail', id = question.id)
 
-def answer_detail(request, id):
-    answer = get_object_or_404(Answer, pk = id)
-    return render(request, 'qna_answer.html', {'answer': answer})
-
 def answer_edit(request, id):
     edit_answer = Answer.objects.get(id = id)
     return render(request, 'answer_edit.html', {'answer':edit_answer})
@@ -83,7 +83,7 @@ def answer_update(request, id):
         update_answer.image = request.FILES['image']
     update_answer.save()
 
-    return redirect('a_detail', update_answer.id)
+    return redirect('q_detail', update_answer.question.id)
 
 def answer_delete(request, id):
     delete_answer = Answer.objects.get(id = id)
@@ -108,4 +108,8 @@ def answer_adopt(request, id):
     adopting_question.save()
     adopted_answer.save()
     adopted_answer.author.save()
-    return redirect('a_detail', adopted_answer.id)
+    return redirect('q_detail', adopting_question.id)
+
+def answer_another(request, id):
+    question = get_object_or_404(Question, pk = id)
+    return render(request, 'qna_another_answer.html', {'question': question})

@@ -1,0 +1,47 @@
+.qna_new_content{
+    display: flex;
+    align-items: flex-start;
+    margin: 1rem 0rem;
+    font-weight: 800;
+}
+.qna_new_content textarea{
+    width: 90%;
+    height: 20rem;
+    border: 3px solid #52aace;
+    margin: 0;
+    margin-left: 0.5rem;
+    font-weight: 500;
+}
+
+.qna_new_image{
+    height: 2rem;
+    opacity: 1;
+    border: 1px solid #52aace;
+}
+.qna_new_submit{
+    width: 30%;
+    height: 2.5rem;
+    opacity: 1;
+    background-color: rgb(255, 188, 166);
+    font-weight: 800;
+    color:firebrick;
+}
+
+.img_icon{
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+
+.qna_new_question{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.qna_new_title{
+    width: 30rem;
+    opacity: 1;
+    border: 1px solid #52aace;
+}
