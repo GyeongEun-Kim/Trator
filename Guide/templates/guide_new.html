@@ -1,6 +1,7 @@
 
 {% extends 'base.html' %}
     {% block content %}
+    <div class="wrap_section">
     <form action="{% url 'guide_new' %}" method='POST' enctype ="multipart/form-data">
         {% csrf_token %}
         <div class ="new_guide_title">새 가이드 작성</div>
@@ -75,7 +76,7 @@
         <br>
         <br>
 
-        
+    </div>
         
 
         <script src="https://kit.fontawesome.com/2eb21cad7a.js" crossorigin="anonymous">
