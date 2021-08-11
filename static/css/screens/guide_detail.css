@@ -1,4 +1,4 @@
-.trator_guide {
+ .trator_guide {
     font-size: 2rem;
     padding: 1rem;
     font-weight: 600;
@@ -12,21 +12,12 @@
     padding: 10px;
 }
 
-.g_detail_writer {
-    /* font-size: 30px; */
-    
-    display: inline;
-    position: relative;
-   
-    
 
-}
-
-.g_detail_time {
-    /* font-size: 30px; */
-    display: inline;
-    position: relative;
-    left : 37rem;
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    
 }
 
 .g_detail_content {
@@ -39,9 +30,15 @@
 
 
 .g_detail_spots {
-    /* padding-left: 30px; */
+     padding-left: 30px; 
     padding-bottom: 40px;
-    
+    font-weight: bold;
+    text-align: center;
+}
+
+.g_detail_price {
+    font-weight: bold;
+    text-align: center;
 }
 
 .g_image {
@@ -91,10 +88,4 @@
     
     
 
-/* 
-.map_wrap {
-    
-    height:400px;  width: 450px;
-    position: relative;
-    background-color: mediumvioletred;
-} */
+ 

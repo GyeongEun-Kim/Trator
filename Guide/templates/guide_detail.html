@@ -7,12 +7,16 @@
     <div class ="detail_wrap">
         {% if content.guide_detail is not None %}
             <h1 class="g_detail_title"> {{content.guide_detail.title}}</h1> <br>
+
+            <div class="container">
             <h2 class="g_detail_writer"><i class="far fa-user"></i> {{content.guide_detail.writer}}</h2>
             <h2 class="g_detail_time"><i class="far fa-clock"></i> {{content.guide_detail.date}}</h2>
+            </div>
+
             <hr style="color: #52aace;">
             <h2 class="g_detail_content"> {{content.guide_detail.content}} </h2>
             <br>
-            <h2 class="g_detail_price">가격 : {{content.guide_detail.price}}</h2> <br>
+            <h2 class="g_detail_price"  >가격 : {{content.guide_detail.price}}</h2> <br>
             <h2 class="g_detail_spots">가이드 추천 장소 : {{content.map_title}}</h2>
 
             {% if content.guide_detail.image %}
@@ -25,11 +29,12 @@
             <div class="container">
                 {% if content.guide_detail.writer == request.user %}
                 <div class="btn">
-                    <a href="{% url 'guide_delete' content.guide_detail.id %}" >글 삭제하기</a>
-                </div>
-                <div class="btn">
                     <a href ="{% url 'guide_update' content.guide_detail.id %}">글 수정하기</a>
                 </div>
+                <div class="btn">
+                    <a href="{% url 'guide_delete' content.guide_detail.id %}" >글 삭제하기</a>
+                </div>
+                
             
                 {% else %}
                 <div class="btn">

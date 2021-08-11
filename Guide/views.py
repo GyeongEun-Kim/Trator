@@ -40,7 +40,7 @@ def guide_new (request) :
         newGuide = Guide.objects.create(title = request.POST['title'],
                                         content = request.POST['content'],
                                         writer = request.user,
-                                        date = timezone.localtime(),
+                                        date = timezone.now(),
                                         location = request.POST['location'],
                                         price = request.POST['price'],
                                     )
@@ -65,7 +65,10 @@ def guide_update (request, id) :
         update_guide.content= request.POST['content']
         update_guide.location= request.POST['location']
         update_guide.price= request.POST['price']
-        update_guide.image= request.FILES['image']
+        update_guide.date = timezone.now()
+
+        if (request.FILES.get('image') is not None) :
+            update_guide.image= request.FILES['image']
         update_guide.save() 
         
         return guide_list(request)
@@ -104,7 +107,7 @@ def kakaopay_process (request):
             "partner_user_id": "kekim20",    # 유저 아이디
             "item_name": "트래토 가이드",        # 구매 물품 이름
             "quantity": "1",                # 구매 물품 수량
-            "total_amount": "12000",        # 구매 물품 가격
+            "total_amount": "3000",        # 구매 물품 가격
             "tax_free_amount": "0",         # 구매 물품 비과세
             "approval_url": "http://127.0.0.1:8000/guide/kakaopay_success",
             "cancel_url": "http://127.0.0.1:8000/guide/kakaopay_cancel",

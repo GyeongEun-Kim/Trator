@@ -30,7 +30,7 @@ def question_create(request):
     new_question.writer = request.user.username
     new_question.location = request.POST['location']
     new_question.content = request.POST['content']
-    new_question.date = timezone.localtime()
+    new_question.date = timezone.now()
     new_question.vote = False
     if (request.FILES.get('image') is not None) :
             new_question.image = request.FILES['image']
@@ -46,7 +46,7 @@ def question_update(request, id):
     update_question = Question.objects.get(id = id)
     update_question.title = request.POST['title']
     update_question.content = request.POST['content']
-    update_question.date = timezone.localtime()
+    update_question.date = timezone.now()
     if (request.FILES.get('image') is not None) :
         update_question.image = request.FILES['image']
     update_question.save()

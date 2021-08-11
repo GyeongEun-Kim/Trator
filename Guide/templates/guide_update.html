@@ -21,26 +21,28 @@
                         <option value="오세아니아">오세아니아</option>
                     </select>
                     <br>
-
+                    <span class="content">
                     <textarea cols="100" rows="20" id="content" name="content">{{guide_update.content}}</textarea>
+                </span>
                     <br>
 
-                   
+                    <div class="container">
                         <div class="price">
                     <label for="price">가격</label>
                     <input type="number" id="price" name="price" value="{{guide_update.price}}">
                     
                     </div>
-                    <div class="image">
-                    <label for="image">이미지 첨부</label>
-                    <input type="file" style="width: 300px" id="image" name="image" >
-                </div>
                     
-                    <br>
+                    <label for="image"><i class="far fa-images img_icon">:</i></label>
+                    <input type="file" style="width: 300px" id="image" name="image" >
+                
 
-                    <button type="submit" style="position:relative; left:800px; bottom:50px;">글 수정하기</button>
+                    <button type="submit">글 수정하기</button>
+                </div>
                 </div>
             {% endif %}
     </form>
 </div>
+
+<script src="https://kit.fontawesome.com/2eb21cad7a.js" crossorigin="anonymous"></script>
     {% endblock %}

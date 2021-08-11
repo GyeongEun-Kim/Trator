@@ -4,3 +4,28 @@
     border-radius: 10px;
     padding:30px;
 }
+
+.content {
+    display: flex;
+    align-items: flex-start;
+    margin: 1rem 0rem;
+    font-weight: 800;
+
+}
+.content textarea{
+    width: 100%;
+    height: 20rem;
+    border: 3px solid #52aace;
+    margin: 0;
+    margin-left: 0.5rem;
+    font-weight: 500;
+}
+
+.container {
+    display: flex;
+    align-items:baseline;
+    justify-content: space-between;
+    width:70%;
+    position: relative;
+    
+}
